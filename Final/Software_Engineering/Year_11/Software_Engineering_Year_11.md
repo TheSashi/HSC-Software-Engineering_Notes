@@ -120,12 +120,7 @@ READ num1, num2
 LET multi = num1*num2
 DISPLAY multi
 ```
-| num1 | num2 | multi | DISPLAY multi |
-|---|---|---|---|
-| 2 | 3 | 2*3 = 6 | 6 |
-| 5 | 4 | 5*4 = 20 | 20 |
-| 7 | 8 | 7*8 = 56 | 56 |
-| 10 | 0 | 10*0 = 0 | 0 |
+<table style='border-collapse:collapse;width:100%;font-size:14px;margin:8px 0;'><thead><tr><th style='border:1px solid #bdc1c6;padding:6px 10px;text-align:left;background:#e8eaed;color:#000000;font-weight:600;'>num1</th><th style='border:1px solid #bdc1c6;padding:6px 10px;text-align:left;background:#e8eaed;color:#000000;font-weight:600;'>num2</th><th style='border:1px solid #bdc1c6;padding:6px 10px;text-align:left;background:#e8eaed;color:#000000;font-weight:600;'>multi</th><th style='border:1px solid #bdc1c6;padding:6px 10px;text-align:left;background:#e8eaed;color:#000000;font-weight:600;'>DISPLAY multi</th></tr></thead><tbody><tr><td style='border:1px solid #bdc1c6;padding:6px 10px;'>2</td><td style='border:1px solid #bdc1c6;padding:6px 10px;'>3</td><td style='border:1px solid #bdc1c6;padding:6px 10px;'>2*3 = 6</td><td style='border:1px solid #bdc1c6;padding:6px 10px;'>6</td></tr><tr><td style='border:1px solid #bdc1c6;padding:6px 10px;'>5</td><td style='border:1px solid #bdc1c6;padding:6px 10px;'>4</td><td style='border:1px solid #bdc1c6;padding:6px 10px;'>5*4 = 20</td><td style='border:1px solid #bdc1c6;padding:6px 10px;'>20</td></tr><tr><td style='border:1px solid #bdc1c6;padding:6px 10px;'>7</td><td style='border:1px solid #bdc1c6;padding:6px 10px;'>8</td><td style='border:1px solid #bdc1c6;padding:6px 10px;'>7*8 = 56</td><td style='border:1px solid #bdc1c6;padding:6px 10px;'>56</td></tr><tr><td style='border:1px solid #bdc1c6;padding:6px 10px;'>10</td><td style='border:1px solid #bdc1c6;padding:6px 10px;'>0</td><td style='border:1px solid #bdc1c6;padding:6px 10px;'>10*0 = 0</td><td style='border:1px solid #bdc1c6;padding:6px 10px;'>0</td></tr></tbody></table>
 
 ### Worked Desk Check (b) — IF/ELSEIF/ELSE
 ```
@@ -135,13 +130,7 @@ ELSE IF (isfive = 6) DISPLAY "your number is 6"
 ELSE                  DISPLAY "your number is not 5 or 6"
 ENDIF
 ```
-| isFive | isFive=5? | isFive=6? | DISPLAY |
-|---|---|---|---|
-| 5 | T | F | "Your number is 5" |
-| 6 | F | T | "Your number is 6" |
-| 8 | F | F | "Your number is not 5 or 6" |
-| 0 | F | F | "Your number is not 5 or 6" |
-| -1 | F | F | "Your number is not 5 or 6" |
+<table style='border-collapse:collapse;width:100%;font-size:14px;margin:8px 0;'><thead><tr><th style='border:1px solid #bdc1c6;padding:6px 10px;text-align:left;background:#e8eaed;color:#000000;font-weight:600;'>isFive</th><th style='border:1px solid #bdc1c6;padding:6px 10px;text-align:left;background:#e8eaed;color:#000000;font-weight:600;'>isFive=5?</th><th style='border:1px solid #bdc1c6;padding:6px 10px;text-align:left;background:#e8eaed;color:#000000;font-weight:600;'>isFive=6?</th><th style='border:1px solid #bdc1c6;padding:6px 10px;text-align:left;background:#e8eaed;color:#000000;font-weight:600;'>DISPLAY</th></tr></thead><tbody><tr><td style='border:1px solid #bdc1c6;padding:6px 10px;'>5</td><td style='border:1px solid #bdc1c6;padding:6px 10px;'>T</td><td style='border:1px solid #bdc1c6;padding:6px 10px;'>F</td><td style='border:1px solid #bdc1c6;padding:6px 10px;'>"Your number is 5"</td></tr><tr><td style='border:1px solid #bdc1c6;padding:6px 10px;'>6</td><td style='border:1px solid #bdc1c6;padding:6px 10px;'>F</td><td style='border:1px solid #bdc1c6;padding:6px 10px;'>T</td><td style='border:1px solid #bdc1c6;padding:6px 10px;'>"Your number is 6"</td></tr><tr><td style='border:1px solid #bdc1c6;padding:6px 10px;'>8</td><td style='border:1px solid #bdc1c6;padding:6px 10px;'>F</td><td style='border:1px solid #bdc1c6;padding:6px 10px;'>F</td><td style='border:1px solid #bdc1c6;padding:6px 10px;'>"Your number is not 5 or 6"</td></tr><tr><td style='border:1px solid #bdc1c6;padding:6px 10px;'>0</td><td style='border:1px solid #bdc1c6;padding:6px 10px;'>F</td><td style='border:1px solid #bdc1c6;padding:6px 10px;'>F</td><td style='border:1px solid #bdc1c6;padding:6px 10px;'>"Your number is not 5 or 6"</td></tr><tr><td style='border:1px solid #bdc1c6;padding:6px 10px;'>-1</td><td style='border:1px solid #bdc1c6;padding:6px 10px;'>F</td><td style='border:1px solid #bdc1c6;padding:6px 10px;'>F</td><td style='border:1px solid #bdc1c6;padding:6px 10px;'>"Your number is not 5 or 6"</td></tr></tbody></table>
 
 ### Worked Desk Check (c) — WHILE loop
 ```
@@ -153,13 +142,7 @@ WHILE (x < count)
     DISPLAY even
 ENDWHILE
 ```
-| X | Even (before update) | Even = even + 2 | X = x + 1 | DISPLAY even |
-|---|---|---|---|---|
-| 0 | 0 | 2 | 1 | 2 |
-| 1 | 2 | 4 | 2 | 4 |
-| 2 | 4 | 6 | 3 | 6 |
-| 3 | 6 | 8 | 4 | 8 |
-| 4 | 8 | 10 | 5 | 10 |
+<table style='border-collapse:collapse;width:100%;font-size:14px;margin:8px 0;'><thead><tr><th style='border:1px solid #bdc1c6;padding:6px 10px;text-align:left;background:#e8eaed;color:#000000;font-weight:600;'>X</th><th style='border:1px solid #bdc1c6;padding:6px 10px;text-align:left;background:#e8eaed;color:#000000;font-weight:600;'>Even (before update)</th><th style='border:1px solid #bdc1c6;padding:6px 10px;text-align:left;background:#e8eaed;color:#000000;font-weight:600;'>Even = even + 2</th><th style='border:1px solid #bdc1c6;padding:6px 10px;text-align:left;background:#e8eaed;color:#000000;font-weight:600;'>X = x + 1</th><th style='border:1px solid #bdc1c6;padding:6px 10px;text-align:left;background:#e8eaed;color:#000000;font-weight:600;'>DISPLAY even</th></tr></thead><tbody><tr><td style='border:1px solid #bdc1c6;padding:6px 10px;'>0</td><td style='border:1px solid #bdc1c6;padding:6px 10px;'>0</td><td style='border:1px solid #bdc1c6;padding:6px 10px;'>2</td><td style='border:1px solid #bdc1c6;padding:6px 10px;'>1</td><td style='border:1px solid #bdc1c6;padding:6px 10px;'>2</td></tr><tr><td style='border:1px solid #bdc1c6;padding:6px 10px;'>1</td><td style='border:1px solid #bdc1c6;padding:6px 10px;'>2</td><td style='border:1px solid #bdc1c6;padding:6px 10px;'>4</td><td style='border:1px solid #bdc1c6;padding:6px 10px;'>2</td><td style='border:1px solid #bdc1c6;padding:6px 10px;'>4</td></tr><tr><td style='border:1px solid #bdc1c6;padding:6px 10px;'>2</td><td style='border:1px solid #bdc1c6;padding:6px 10px;'>4</td><td style='border:1px solid #bdc1c6;padding:6px 10px;'>6</td><td style='border:1px solid #bdc1c6;padding:6px 10px;'>3</td><td style='border:1px solid #bdc1c6;padding:6px 10px;'>6</td></tr><tr><td style='border:1px solid #bdc1c6;padding:6px 10px;'>3</td><td style='border:1px solid #bdc1c6;padding:6px 10px;'>6</td><td style='border:1px solid #bdc1c6;padding:6px 10px;'>8</td><td style='border:1px solid #bdc1c6;padding:6px 10px;'>4</td><td style='border:1px solid #bdc1c6;padding:6px 10px;'>8</td></tr><tr><td style='border:1px solid #bdc1c6;padding:6px 10px;'>4</td><td style='border:1px solid #bdc1c6;padding:6px 10px;'>8</td><td style='border:1px solid #bdc1c6;padding:6px 10px;'>10</td><td style='border:1px solid #bdc1c6;padding:6px 10px;'>5</td><td style='border:1px solid #bdc1c6;padding:6px 10px;'>10</td></tr></tbody></table>
 
 **Sorting:** Bubble Sort (swaps if next value higher; source notes a buggy version where swap isn't inside the if → infinite loop). Selection Sort (uses `Swap(A,B)` subroutine).
 
@@ -167,11 +150,76 @@ ENDWHILE
 
 ## 3. Numbering Systems
 
-- **Decimal (base 10):** digits 0–9, powers of 10. **Binary (base 2):** 0/1, powers of 2 (8,4,2,1), leading zeros written. **Hex (base 16):** 0–9 then A–F, powers of 16.
-- **Binary→Decimal:** sum each bit × place value. `1010` = 8+2 = 10.
-- **Hex→Binary:** straight substitution, each hex digit = 4 bits. `3AB2` = `0011 1010 1011 0010`. `F`=1111, `A`=1010, `B`=1011.
-- **Hex→Decimal:** digit × 16^position. `DEAF` = 13×4096+14×256+10×16+15 = 57007. `FEED` = 65261.
-- **2s complement** (PF7 answers): `-127`→`1 0000001`; `+32`→`0 0100000`; `-14`→`1 1110010`. Binary addition/subtraction worked in source.
+**What a numbering system (a "base") is:** it is just the set of digits you are allowed to use, plus the rule that each position in a number is worth `base ^ position` (positions counted from 0 at the right). Same digits, different base, different value.
+
+| Base | Name | Allowed digits | Why it exists |
+|------|------|---------------|---------------|
+| 10 | Decimal | 0–9 | The everyday system we use |
+| 2 | Binary | 0, 1 | Computers are switches: 0 = off, 1 = on |
+| 16 | Hexadecimal | 0–9 then A–F | Shorthand for binary (4 bits = 1 hex digit) |
+
+**Place-value grids (the top row is what each column is worth):**
+
+| | Col 4 | Col 3 | Col 2 | Col 1 |
+|---|---|---|---|---|
+| Decimal | 10³ = 1000 | 10² = 100 | 10¹ = 10 | 10⁰ = 1 |
+| Binary | 2³ = 8 | 2² = 4 | 2¹ = 2 | 2⁰ = 1 |
+| Hex | 16³ = 4096 | 16² = 256 | 16¹ = 16 | 16⁰ = 1 |
+
+### Binary → Decimal (worked)
+Write the binary, put each place value above it, multiply, then add.
+
+Example `1010`:
+
+| Bit | 1 | 0 | 1 | 0 |
+|---|---|---|---|---|
+| Place value | 8 | 4 | 2 | 1 |
+| Bit × place | 8 | 0 | 2 | 0 |
+
+Sum = 8 + 0 + 2 + 0 = **10**.
+
+### Decimal → Binary (worked)
+"Turn on only the bits you need." Start from the biggest power of 2 that fits, subtract, repeat.
+
+Example `10`: biggest power ≤ 10 is 8 (2³). 10 − 8 = 2. 2 = 2¹. So bits 8 and 2 are on → `1010`.
+
+Powers you need (8 bits = 1 byte): 128, 64, 32, 16, 8, 4, 2, 1.
+
+### Hex → Decimal (worked)
+Each hex digit × 16^position, summed left to right.
+
+`DEAF` = 13×4096 + 14×256 + 10×16 + 15×1 = 53248 + 3584 + 160 + 15 = **57007**.
+
+### Decimal → Hex (worked)
+Repeatedly divide by 16, keep the remainders, map 10–15 to A–F, read remainders bottom-to-top.
+
+`999` → 999÷16 = 62 r 7; 62÷16 = 3 r 14(E); 3÷16 = 0 r 3 → read up = **3E7**.
+
+### Binary ↔ Hex shortcut
+Every 4 binary digits = exactly 1 hex digit. Memorise this row (it is the key to fast conversion):
+
+| Dec | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| Bin | 0000 | 0001 | 0010 | 0011 | 0100 | 0101 | 0110 | 0111 | 1000 | 1001 | 1010 | 1011 | 1100 | 1101 | 1110 | 1111 |
+| Hex | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | A | B | C | D | E | F |
+
+So `3AB2` → `3`=0011, `A`=1010, `B`=1011, `2`=0010 ⇒ `0011 1010 1011 0010`.
+
+### 2s complement (how computers store negative numbers)
+Computers only have 0/1, so the leftmost bit is used as a **sign** (0 = positive, 1 = negative). 2s complement is the standard method because it lets the CPU use the same addition circuit for positive and negative numbers (no separate subtractor needed).
+
+**To find the 2s complement of a number:**
+1. Write the positive value in binary.
+2. Flip every bit (0↔1) — this is the 1s complement.
+3. Add 1 — this gives the 2s complement.
+
+Worked: `-14`
+- `+14` = `0001110`
+- Flip every bit → `1110001`
+- Add 1 → `1110010`
+- With the sign bit separated: `1 1110010` ✓ (matches the source answer)
+
+Source 2s-complement answers to memorise: `-127`→`1 0000001`; `+32`→`0 0100000`; `-14`→`1 1110010`. Binary addition/subtraction are worked in the source handouts.
 
 ---
 
