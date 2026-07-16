@@ -166,10 +166,10 @@ ENDWHILE
 | Binary | 2³ = 8 | 2² = 4 | 2¹ = 2 | 2⁰ = 1 |
 | Hex | 16³ = 4096 | 16² = 256 | 16¹ = 16 | 16⁰ = 1 |
 
-### Binary → Decimal (worked)
-Write the binary, put each place value above it, multiply, then add.
+### Binary → Decimal (the method)
+Binary is base 2, so each position from the right is worth 2⁰, 2¹, 2², 2³, … = 1, 2, 4, 8, 16, 32, 64, 128. **Only the 1-bits count** — a 0 in a column contributes nothing. So the method is: write the place value above each bit, multiply (1×value or 0×value), then add the non-zero results.
 
-Example `1010`:
+Worked `1010`:
 
 | Bit | 1 | 0 | 1 | 0 |
 |---|---|---|---|---|
@@ -178,10 +178,18 @@ Example `1010`:
 
 Sum = 8 + 0 + 2 + 0 = **10**.
 
-### Decimal → Binary (worked)
-"Turn on only the bits you need." Start from the biggest power of 2 that fits, subtract, repeat.
+Second example `1101`: 8 + 4 + 0 + 1 = **13**.
 
-Example `10`: biggest power ≤ 10 is 8 (2³). 10 − 8 = 2. 2 = 2¹. So bits 8 and 2 are on → `1010`.
+### Decimal → Binary (the method)
+Start from the biggest power of 2 that fits inside your number, turn that bit ON, subtract it, then repeat with what's left until you reach 0. Any power you didn't use stays OFF (0). Read the bits top-to-bottom (128 down to 1).
+
+Worked `10`:
+- Biggest power ≤ 10 is **8** (2³). 10 − 8 = 2 → bit 8 is ON.
+- Biggest power ≤ 2 is **2** (2¹). 2 − 2 = 0 → bit 2 is ON.
+- Bits 4 and 1 were never used → OFF.
+- 8 4 2 1 = **1 0 1 0** → `1010`.
+
+Second example `13`: 13 − 8 = 5; 5 − 4 = 1; 1 − 1 = 0 → bits 8,4,1 ON, 2 OFF → `1101`.
 
 Powers you need (8 bits = 1 byte): 128, 64, 32, 16, 8, 4, 2, 1.
 
@@ -225,8 +233,8 @@ Source 2s-complement answers to memorise: `-127`→`1 0000001`; `+32`→`0 01000
 
 ## 4. Programming Paradigms
 
-- **Object-Oriented (PF4):** Class (blueprint), Object (instance), Encapsulation (bundle data+methods, hide internals), Abstraction (show essentials only), Inheritance (child gets parent's properties/methods), Polymorphism (different classes treated via common interface; same method name, different behaviour), Instantiation (create object from class), Attribute/Property (data), Method (function in class).
-- **Logic (PF4):** Variable, Rule ("if this then that"), Facts (knowledge base), Heuristics (shortcuts), Goals, Inference Engine, Backward/Forward Chaining, Expert system.
+- **Object-Oriented (PF4):** the "things in the real world" style. Class (blueprint), Object (instance), Encapsulation (bundle data+methods, hide internals), Abstraction (show essentials only), Inheritance (child gets parent's properties/methods), Polymorphism (different classes treated via common interface; same method name, different behaviour), Instantiation (create object from class), Attribute/Property (data), Method (function in class). Used when modelling distinct real-world entities (your D&D app's characters).
+- **Logic (PF4):** the "facts and rules" style. Variable, Rule ("if this then that"), Facts (knowledge base), Heuristics (shortcuts), Goals, Inference Engine, Backward/Forward Chaining, Expert system. Used for expert systems / decision-making from a knowledge base.
 - **Imperative/Procedural:** named in sources (COBOL example) but NOT defined — do not assume a definition.
 - **Functional:** absent from provided docs.
 
@@ -238,6 +246,8 @@ Source 2s-complement answers to memorise: `-127`→`1 0000001`; `+32`→`0 01000
 - **DFD:** boxes = verb phrases (→ classes/methods); arcs = noun phrases (→ attributes); no actors; symbols: process, data store, external entity, data flow.
 - **Structure Chart:** filled circle = control flag; empty circle = data parameter; diamond = selection; box = function; control box = top.
 - **Class Diagram:** 3 compartments (name / attributes / methods); inheritance via `class Child(Parent):`; multiplicity handled by subclassing.
+
+**How the 4 pillars connect (this is what an exam question tests):** you bundle data + methods into a class and *hide* the internals (encapsulation), you show only what the user needs to see (abstraction), you make a child class reuse a parent's code (inheritance), and you let different child classes respond differently to the same method call (polymorphism). Encapsulation + abstraction are about *protecting/hiding*; inheritance + polymorphism are about *reusing/varying*.
 
 **DFD → code pipeline (INO2):** Level 0 DFD name → class name; Level 1 process names → methods; data-flow items → attributes.
 
