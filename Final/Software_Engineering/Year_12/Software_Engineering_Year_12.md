@@ -31,7 +31,8 @@ updated: 2026-07-15
 A desk check is a **trace table**: you run the code by hand, one line at a time, and write down what each variable holds AFTER every line. That is the whole skill. Markers just want to see your variables tracked step by step.
 
 **Set it up:**
-- One column per variable, plus an `OUTPUT` column and a `STEP` column.
+- One column per variable, plus an `Output` column and a `Step` column.
+- Add a **Line executed** column naming the code line each row runs. This is what makes the table easy to follow, you see the code next to its effect.
 - Use `-` for not assigned yet / unknown.
 - For an `INPUT` line, drop in the test value you are feeding it.
 - After each line, write the NEW value of whatever that line changed.
@@ -39,7 +40,7 @@ A desk check is a **trace table**: you run the code by hand, one line at a time,
 **Exam rules to lock in:**
 - Every variable gets a column, even before it is used. Unused = `-`.
 - Write the value AFTER the line runs, not before.
-- The condition line (`IF` / `WHILE`) gets its own step. Jot true/false next to it.
+- The condition line (`IF` / `WHILE`) gets its own step. Jot true/false in the Note column.
 - When a loop finishes, show the final FALSE check too. Markers look for that.
 - Feed in test data as normal / boundary / extreme. That is the validation side of it.
 
@@ -50,15 +51,14 @@ y = 10
 x = x + y
 OUTPUT x
 ```
-| STEP | x | y | OUTPUT |
-|---|---|---|---|
-| 1 | - | - | - |
-| 2 | 5 | - | - |
-| 3 | 5 | 10 | - |
-| 4 | 15 | 10 | - |
-| 5 | 15 | 10 | 15 |
+| Step | Line executed | x | y | Output |
+|------|---------------|---|---|--------|
+| 1 | `x = 5` | 5 | - | - |
+| 2 | `y = 10` | 5 | 10 | - |
+| 3 | `x = x + y` | 15 | 10 | - |
+| 4 | `OUTPUT x` | 15 | 10 | 15 |
 
-Final output = 15. Note x changes twice; row 4 shows the new 15.
+Final output = 15. Note x changes twice, row 3 shows the new 15.
 
 **Worked example — WHILE loop:**
 ```
@@ -69,21 +69,21 @@ WHILE count <= 3:
     count = count + 1
 OUTPUT total
 ```
-| STEP | total | count | OUTPUT | note |
-|---|---|---|---|---|
-| 1 | 0 | - | - | init |
-| 2 | 0 | 1 | - | init |
-| 3 | 0 | 1 | - | check 1<=3 TRUE |
-| 4 | 1 | 1 | - | total = 0+1 |
-| 5 | 1 | 2 | - | count = 2 |
-| 6 | 1 | 2 | - | check 2<=3 TRUE |
-| 7 | 3 | 2 | - | total = 1+2 |
-| 8 | 3 | 3 | - | count = 3 |
-| 9 | 3 | 3 | - | check 3<=3 TRUE |
-| 10 | 6 | 3 | - | total = 3+3 |
-| 11 | 6 | 4 | - | count = 4 |
-| 12 | 6 | 4 | - | check 4<=3 FALSE, exit |
-| 13 | 6 | 4 | 6 | output |
+| Step | Line executed | total | count | Output | Note |
+|------|---------------|-------|-------|--------|------|
+| 1 | `total = 0` | 0 | - | - | init |
+| 2 | `count = 1` | 0 | 1 | - | init |
+| 3 | check `count <= 3` | 0 | 1 | - | TRUE, enter loop |
+| 4 | `total = total + count` | 1 | 1 | - | |
+| 5 | `count = count + 1` | 1 | 2 | - | |
+| 6 | check `count <= 3` | 1 | 2 | - | TRUE |
+| 7 | `total = total + count` | 3 | 2 | - | |
+| 8 | `count = count + 1` | 3 | 3 | - | |
+| 9 | check `count <= 3` | 3 | 3 | - | TRUE |
+| 10 | `total = total + count` | 6 | 3 | - | |
+| 11 | `count = count + 1` | 6 | 4 | - | |
+| 12 | check `count <= 3` | 6 | 4 | - | FALSE, exit loop |
+| 13 | `OUTPUT total` | 6 | 4 | 6 | |
 
 Final output = 6 (that is 1+2+3). Loop ran 3 times.
 
@@ -96,12 +96,12 @@ ELSE
     status = "minor"
 OUTPUT status
 ```
-| STEP | age | status | OUTPUT |
-|---|---|---|---|
-| 1 | 16 | - | - |
-| 2 | 16 | - | (16>=18? false, go ELSE) |
-| 3 | 16 | minor | - |
-| 4 | 16 | minor | minor |
+| Step | Line executed | age | status | Output |
+|------|---------------|-----|--------|--------|
+| 1 | `age = 16` | 16 | - | - |
+| 2 | check `age >= 18` | 16 | - | FALSE, go ELSE |
+| 3 | `status = "minor"` | 16 | minor | - |
+| 4 | `OUTPUT status` | 16 | minor | minor |
 
 Output = "minor".
 
