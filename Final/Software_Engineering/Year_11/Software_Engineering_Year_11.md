@@ -244,6 +244,7 @@ A **paradigm** is just the overall *style* a language uses to solve problems. Fo
 
 ### Term glossary (OOP + Logic)
 Keep these straight, the exam loves defining them:
+
 - **Class** — the blueprint/template for objects. **Object** — one instance made from a class, with its own data.
 - **Encapsulation** — bundle data + methods together and hide the internals. **Abstraction** — show only what the user needs to see.
 - **Inheritance** — a child class gets the parent's properties and methods. **Polymorphism** — different classes respond differently to the same method call.
@@ -273,15 +274,59 @@ Keep these straight, the exam loves defining them:
 
 ## 6. Mechatronics
 
-**Definition:** Mechanics + Electronics + Computing + Control Systems. Coined by Tetsuro Mori (Yaskawa, Japan). Benefits: efficiency, fewer errors, dangerous-task take-over. Drawbacks: job loss, cost, ethics.
+### What it is
+Mechatronics = **Mechanics + Electronics + Computing + Control Systems** working as one. Coined by Tetsuro Mori (Yaskawa, Japan).
 
-**CPU vs Microcontroller (M2):** CPU = processor only, needs extra parts, general-purpose, fast, complex opcodes. Microcontroller = CPU + memory + I/O in one chip, specific/embedded tasks (e.g. Arduino). Registers: PC (next address), MAR (address accessed), ACC (operation results), CIR/IR (current instruction). **Fetch-execute:** PC→MAR→RAM→MDR→CIR→decode (opcode bits 0–3, operand 4–7)→execute→PC+1.
+| Side | Effect |
+|---|---|
+| Benefits | efficiency, fewer errors, takes over dangerous tasks |
+| Drawbacks | job loss, cost, ethics |
 
-**Sensors/Actuators (M3):** Sensor transduces physical→electrical (PIR, accelerometer, gyroscope, ultrasonic, LDR, I2C light, joystick). Actuator converts electrical→mechanical (servos, hydraulic, gripper). Data layer: operational/diagnostic/optimisation data; feedback loop sensor→controller→actuator.
+### CPU vs Microcontroller (M2)
+| | CPU | Microcontroller |
+|---|---|---|
+| What it is | processor only | CPU + memory + I/O on one chip |
+| Needs extra parts? | yes | no |
+| Use case | general-purpose, fast, complex opcodes | specific / embedded tasks (e.g. Arduino) |
 
-**Control algorithms (M4):** read sensors → compute toward set point → output to actuators. **Open-loop** (no feedback: TV remote, traffic light, washing-machine timing) vs **Closed-loop** (feedback: cruise control, steering, A/C, line-follower). Three closed-loop types: On/off (bang-bang), Proportional (correction ∝ error; small steady-state error), PID (integral removes error; derivative damps overshoot).
+**Registers (the CPU's working memory):**
+- **PC** — holds the address of the next instruction
+- **MAR** — holds the address being accessed
+- **ACC** — holds the result of an operation
+- **CIR / IR** — holds the current instruction being run
 
-**Electricity (Starter answers):** ammeter in series, voltmeter in parallel. Putty at 25 cm, 0.15 A → **37.5 Ω**; PD = 37.5×0.15 = **5.625 V**. "thicker putty = lower resistance." Reliability: repeat + mean.
+**Fetch–execute cycle** (one instruction, start to finish):
+`PC → MAR → RAM → MDR → CIR → decode (opcode = bits 0–3, operand = bits 4–7) → execute → PC + 1`
+
+### Sensors vs Actuators (M3)
+| | Does what | Examples |
+|---|---|---|
+| **Sensor** | turns physical → electrical (transduces) | PIR, accelerometer, gyroscope, ultrasonic, LDR, I2C light, joystick |
+| **Actuator** | turns electrical → mechanical | servos, hydraulic, gripper |
+
+The feedback loop: **sensor → controller → actuator** (then the sensor reads the result again). Data collected in three layers: operational, diagnostic, optimisation.
+
+### Control algorithms (M4)
+All follow: **read sensors → compute toward a set point → output to actuators.**
+
+| Type | Feedback? | How it works | Example |
+|---|---|---|---|
+| **Open-loop** | No | runs on a fixed plan, ignores the result | TV remote, traffic light, washing-machine timer |
+| **Closed-loop** | Yes | measures the result and corrects | cruise control, steering, A/C, line-follower |
+
+Three closed-loop correction styles:
+- **On/off (bang-bang)** — snaps fully on or fully off
+- **Proportional** — correction proportional to error; leaves a small steady-state error
+- **PID** — Integral removes that leftover error; Derivative damps the overshoot
+
+### Electricity (worked, Starter)
+Two rules first: **ammeter goes in series, voltmeter in parallel.**
+
+Worked (putty at 25 cm, current 0.15 A):
+- Resistance: R = V / I, but here PD is found from the putty reading → **R = 37.5 Ω**
+- Potential difference: PD = R × I = 37.5 × 0.15 = **5.625 V**
+
+"Thicker putty = lower resistance." Reliability of a reading comes from **repeating** it and taking the **mean**.
 
 ---
 
