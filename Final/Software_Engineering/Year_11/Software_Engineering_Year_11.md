@@ -233,10 +233,22 @@ Source 2s-complement answers to memorise: `-127`→`1 0000001`; `+32`→`0 01000
 
 ## 4. Programming Paradigms
 
-- **Object-Oriented (PF4):** the "things in the real world" style. Class (blueprint), Object (instance), Encapsulation (bundle data+methods, hide internals), Abstraction (show essentials only), Inheritance (child gets parent's properties/methods), Polymorphism (different classes treated via common interface; same method name, different behaviour), Instantiation (create object from class), Attribute/Property (data), Method (function in class). Used when modelling distinct real-world entities (your D&D app's characters).
-- **Logic (PF4):** the "facts and rules" style. Variable, Rule ("if this then that"), Facts (knowledge base), Heuristics (shortcuts), Goals, Inference Engine, Backward/Forward Chaining, Expert system. Used for expert systems / decision-making from a knowledge base.
-- **Imperative/Procedural:** named in sources (COBOL example) but NOT defined — do not assume a definition.
-- **Functional:** absent from provided docs.
+A **paradigm** is just the overall *style* a language uses to solve problems. Four are in the course. Read this table top-to-bottom, then the term glossary below it.
+
+| Paradigm | What it is (in plain words) | When you would use it | Seen in your course |
+|---|---|---|---|
+| **Object-Oriented (OOP)** | Build the program as a set of "things" (objects), each bundling its own data + the actions it can do. Models the real world. | Modelling distinct real-world entities, e.g. the characters in your D&D app. | PF4, your D&D + Wicked Problems projects |
+| **Logic** | Program as a base of **facts** and **rules** ("if this then that"); an engine reasons over them to answer questions. | Expert systems, decision-making from a knowledge base. | PF4 |
+| **Imperative / Procedural** | Code as a sequence of step-by-step commands that change program state. | Named in sources (COBOL example) but **not defined** in your handouts, do not assume a definition. | Mentioned only |
+| **Functional** | Builds results by combining pure functions with no changing state. | **Absent** from the provided docs. | Not in sources |
+
+### Term glossary (OOP + Logic)
+Keep these straight, the exam loves defining them:
+- **Class** — the blueprint/template for objects. **Object** — one instance made from a class, with its own data.
+- **Encapsulation** — bundle data + methods together and hide the internals. **Abstraction** — show only what the user needs to see.
+- **Inheritance** — a child class gets the parent's properties and methods. **Polymorphism** — different classes respond differently to the same method call.
+- **Instantiation** — the act of creating an object from a class. **Attribute/Property** — the data held by an object. **Method** — a function that lives inside a class.
+- **Logic terms:** Variable, Rule ("if this then that"), Facts (the knowledge base), Heuristics (shortcuts/s规则 of thumb), Goals, Inference Engine, Backward/Forward Chaining, Expert system.
 
 ---
 
