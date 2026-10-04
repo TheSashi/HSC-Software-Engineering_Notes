@@ -67,8 +67,9 @@ By implementing these strategies, the tram timetable model will protect sensitiv
 
 ## Related Notes
 
-- [[Principles_of_Cybersecurity]] — Enterprise Computing security concepts
-- [[Networking_Systems_and_Social_Computing]] — Network security and data transmission
+- [[SE_Secure_Software_Architecture]] — security by design, the CIA triad, threat modelling
+- [[SE_Web_Programming]] — network security, data transmission and web vulnerabilities
+- Enterprise Computing: threat vs vulnerability vs risk, the four breach attributes. *(Lives in the Final vault at `Final/Enterprise_Computing/Principles_of_Cybersecurity.md`, so it cannot be linked from here)*
 
 ---
 
