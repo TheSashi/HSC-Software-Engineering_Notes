@@ -13,6 +13,9 @@ syllabus_ref: HSC Software Engineering — Year 11 & 12
 
 ## Year 11
 
+### Overview
+- [[Year_11_Software_Engineering_Summary]]: condensed guide to all three Year 11 focus areas, with exam-focused examples and a revision checklist
+
 ### 1. [[Programming_Fundamentals]]
 Software development steps, requirements vs specifications, error types, testing methods, conversion methods, Waterfall vs Agile, control structures, subroutines, **desk checks with full worked trace tables**, DFDs, structure charts, data dictionaries, decision trees, storyboards, Gantt charts, numbering systems, two's complement, and the four programming paradigms.
 
@@ -39,7 +42,7 @@ Security by design, the **six fundamental security concepts**, security across t
 
 ## Case Studies
 
-Your own projects live in the Brain vault: [[SE_Your_Projects]] — the D&D App systems report and the Wicked Problems group project. Use these as concrete evidence in extended responses.
+Your own projects live in the Brain vault note `SE_Your_Projects`: the D&D App systems report and the Wicked Problems group project. Use these as concrete evidence in extended responses. This is plain text because Final and Brain are separate vaults.
 
 ---
 
