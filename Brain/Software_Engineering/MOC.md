@@ -33,6 +33,7 @@ updated: 2026-07-15
 
 ### Programming for the Web
 - [[SE_Web_Programming]] — client/server-side, networking, big data, W3C, version control, server-side/CMSes, secure web services, JS algorithms, Caesar cipher (error flagged)
+- [[SQL_Summary_Notes.pdf|SQL Summary Notes PDF]]: quick revision sheet covering SELECT/FROM, WHERE, aggregate functions, GROUP BY, HAVING, INNER JOIN, aliases and report queries.
 
 ### Software Automation (AI/ML)
 - [[SE_Software_Automation]] — AI vs ML, ML types, when to use linear/polynomial/logistic/KNN regression, decision-tree regression, neural nets, ethics

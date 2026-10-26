@@ -34,6 +34,7 @@ CPUs vs microcontrollers, the registers and **fetch–execute cycle**, machine l
 
 ### 4. [[Programming_For_The_Web]]
 Client vs server-side, networking hardware and topologies, protocols and ports, the six V's of big data, web mining, W3C and accessibility, **CSS syntax**, version control, MVC and CMSes, **SQL and ORM**, the TLS handshake, encryption types, digital signatures, XSS, web storage, and the Caesar cipher.
+- [[SQL_Summary_Notes.pdf|SQL Summary Notes PDF]]: quick revision sheet covering SELECT/FROM, WHERE, aggregate functions, GROUP BY, HAVING, INNER JOIN, aliases and report queries.
 
 ### 5. [[Software_Automation]]
 AI vs ML, the four ML types, **the three stages of MLOps**, best-use guidance for linear, polynomial, logistic and KNN regression (plus decision-tree regression), neural networks, decision trees and overfitting, psychology links, and the ethics of automation.
