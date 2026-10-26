@@ -60,9 +60,7 @@ aliases:
 | Type | Definition | Examples |
 |---|---|---|
 | **Functional** | What the system **must do** | Log in, calculate a total, store a record, print a receipt |
-| **Non-functional** | **How well** the system does it — qualities and constraints | Security, performance, usability, reliability, portability, accessibility |
-
-> **Security is a non-functional requirement** — this matters in [[Secure_Software_Architecture]], where security must be designed in from step 1 rather than added later.
+| **Non-functional** | **How well** the system does it — qualities and constraints | Performance, usability, reliability, portability, accessibility |
 
 ### 1.3 Errors
 
@@ -656,7 +654,7 @@ Computers only have 0 and 1, so the **leftmost bit is the sign bit** (0 = positi
 
 Characters are represented with **ASCII** or **Unicode**. When working with text strings, a developer can use how the text is stored **in binary** to perform functions such as **changing the case** of letters or performing a **simple encryption**.
 
-> This is the mechanism behind the Caesar cipher work in [[Programming_For_The_Web]] — shifting a character is arithmetic on its character code.
+> This illustrates how a character's stored code can be manipulated programmatically.
 
 ---
 
@@ -779,5 +777,3 @@ Topic sentence (define the term)
 - [ ] Forward vs backward chaining
 
 ---
-
-> **See also:** [[Object_Oriented_Programming]] | [[Mechatronics]] | [[Programming_For_The_Web]] | [[Software_Automation]] | [[Secure_Software_Architecture]] | [[MOC]]

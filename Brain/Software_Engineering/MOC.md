@@ -9,7 +9,7 @@ updated: 2026-07-15
 
 # Software Engineering — Map of Content
 
-> Brain vault index for all HSC Software Engineering notes. Exam structure and key concepts below; detailed notes linked.
+> Brain vault index for all HSC Software Engineering notes. Each topic is listed separately; detailed notes are linked.
 
 ---
 
@@ -35,10 +35,10 @@ updated: 2026-07-15
 - [[SE_Web_Programming]] — client/server-side, networking, big data, W3C, version control, server-side/CMSes, secure web services, JS algorithms, Caesar cipher (error flagged)
 
 ### Software Automation (AI/ML)
-- [[SE_Software_Automation]] — AI vs ML, ML types, regression (linear/polynomial/logistic/KNN) with worked maths, neural nets/decision trees, ethics
+- [[SE_Software_Automation]] — AI vs ML, ML types, when to use linear/polynomial/logistic/KNN regression, decision-tree regression, neural nets, ethics
 
 ### Secure Software Architecture
-- [[SE_Secure_Software_Architecture]] — security by design, CIA triad, encryption (hash/symmetric/asymmetric), coding securely, Australian privacy context (gaps flagged)
+- [[SE_Secure_Software_Architecture]] — security by design, CIA triad, secure coding, vulnerabilities, testing strategies and Australian privacy context (gaps flagged)
 
 ---
 
@@ -56,11 +56,6 @@ updated: 2026-07-15
 | III. Extended Response | 20 | ~35 min | system design, algorithms, extended discussion |
 
 *Note: the James Ruse "Software Design and Development" trial paper found on THSC is the OLD syllabus — not aligned to the current Software Engineering course. Use NESA 2024+ papers and your teacher's assessments as the authoritative guide.*
-
----
-
-## NESA Keywords to Use in Exam Responses
-algorithm, control structure, sequence, selection, repetition, desk check, pseudocode, flowchart, DFD, structure chart, class diagram, encapsulation, inheritance, polymorphism, abstraction, instantiation, CPU, microcontroller, sensor, actuator, fetch-execute cycle, client-side, server-side, packet switching, DNS, HTTP/HTTPS, big data, W3C, version control, machine learning, regression, neural network, decision tree, artificial intelligence, confidentiality, integrity, availability, authentication, authorisation, encryption, hashing, SSL/TLS, security by design, privacy by design
 
 ---
 

@@ -9,7 +9,7 @@ updated: 2026-07-15
 
 # Software Automation (AI/ML) — Year 12 SE
 
-> Self-contained note on AI vs ML, types of ML, regression (linear/polynomial/logistic/KNN) with worked examples, decision trees & neural networks, the psychology/cognition links, and the ethics/limits of automation. Built from SA1–SA4 and the Student Version pptx. Every definition sourced. (Note: the SA0 .xlsx starter was not readable from the source set — flagged, not fabricated.)
+> Self-contained note on AI vs ML, types of ML, best-use guidance for regression models, decision trees & neural networks, the psychology/cognition links, and the ethics/limits of automation. Built from SA1–SA4 and the Student Version pptx. Every definition sourced. (Note: the SA0 .xlsx starter was not readable from the source set — flagged, not fabricated.)
 
 ---
 
@@ -25,12 +25,8 @@ updated: 2026-07-15
 - **Semi-Supervised:** "some labeled examples but also a lot of unlabeled data."
 - **Reinforcement:** "learns by trial and error and gets rewards or penalties based on its actions."
 
-### Regression types (overview; maths in SA2) (SA1)
-- **Linear Regression:** "drawing a straight line that helps guess" a value; good where one thing increases as another increases.
-- **Logistic Regression:** "helps computers make yes/no decisions, like 'Will it rain?'"
-- **K-Nearest Neighbors (KNN):** "group things by looking at what's nearby."
-- **Polynomial Regression:** "finds patterns that aren't straight … draws a curvy line."
-- Regression generally: "using past and present mathematical data to predict future values i.e. consequences. Also known as finding the Line of Best Fit."
+### Regression types (overview; SA1)
+SA1 names linear, logistic, K-nearest neighbours (KNN) and polynomial regression; the practical model-selection guide is in §2.
 
 ### Automation ML supports (SA1)
 - **DevOps:** combines software dev + IT operations; automation manages deployment, monitors, fixes errors; ML predicts failures.
@@ -39,26 +35,17 @@ updated: 2026-07-15
 
 ---
 
-## 2. Applying ML & Regression (SA2)
+## 2. Choosing Regression Models (SA2)
 
-### Linear Regression via Least Squares (SA2)
-Goal: "make the equation of a straight line of best fit y = mx + b." Build `x | y | xy | x²` table, sums Σx, Σy, Σxy, Σx², n = data points; compute slope **m** and intercept **b**.
-- Worked 1: x=[1,2,3,4,5], y=[2,3,5,6,8] → **y = 1.5x + 0.3** (x=1→1.8, 2→3.3, 3→4.8, 4→6.3, 5→7.8).
-- Worked 2: x=[2,4,6,8], y=[3,4,7,9] → **m = −9.5, b = 58 → y = −9.5x + 58** (x=2→39, 4→20, 6→1, 8→−18).
+| Model | Best used when... | Key reason |
+|---|---|---|
+| **Linear regression** | Predicting a continuous number from a roughly straight relationship. | Models a steady trend. |
+| **Polynomial regression** | Predicting a continuous number from a clearly curved relationship. | Captures curvature that a straight trend misses. |
+| **Logistic regression** | Classifying a yes/no outcome when a probability is useful. | Returns a probability from 0 to 1; a threshold gives the class. |
+| **KNN regression** | Predicting a number when similar, nearby examples tend to have similar results. | Uses nearby examples rather than one global equation; K controls how local or smooth the prediction is. |
+| **Decision-tree regression** | Predicting a number through understandable feature-based branches. | Transparent rules are useful when explanations matter; prune to reduce overfitting. See §3. |
 
-### Polynomial Regression via Least Squares, matrix form (SA2)
-Goal: "make the equation of a curve y = ax² + bx + c." Choice rule: plot data; curvy → polynomial, straight → linear.
-Worked: x=[1,2,3,4,5], y=[2,5,10,17,26] → **y = x² + 1** (x=1→3, 2→7, 3→13, 4→21, 5→31).
-Second: x=[2,4,6,8,10], y=[4,12,18,22,25]; n=5 → **a=0.25, b=2.75, c=78 → y = 0.25x² + 2.75x + 78**.
-
-### Logistic Regression (SA2)
-Aim: "calculate the probability of something being a yes (1) or no (0)." Produces a **sigmoid / S-curve from 0 to 1**. Passing-grade example: "passing grade is approximately 3.5, where the curve crosses the 0.5 probability threshold." Mark 4.5 → "Approximately 50%"; mark 7 → "Approximately 95%."
-
-### K-Nearest Neighbour (KNN) (SA2)
-"KNN Regression does not make data fit a formula. Instead, it highlights K points within range of the Line of Best Fit … will not be smooth." Increasing K changes which points are near the line.
-
-### Programming regression (SA2)
-Linear (Python): compute n, Σx, Σy, Σxy, Σx²; `m = (n*Σxy − Σx*Σy) / (n*Σx² − Σx²)`, `b = (Σy − m*Σx) / n`; print `y = mx + b`. Polynomial: `numpy.polyfit(x, y, 2)` → a, b, c.
+SA2's explicit selection rule is to plot numeric data: use linear regression for a straight trend and polynomial regression for a curved trend. Logistic regression is for yes/no classification. The KNN rule above is the practical meaning of predicting from nearby examples.
 
 ---
 
@@ -104,5 +91,3 @@ Must address impacts on: **safety of workers; people with disability; nature/ski
 - The `Key Terms - Software Engineering.pdf` contains **HSC command terms only** (List/State/Define/Describe/Explain/Analyse/Justify/Evaluate; Create/Present/Design/Develop) — no AI/ML-specific vocabulary.
 
 ---
-
-> **See also:** [[SE_Web_Programming]] | [[SE_Secure_Software_Architecture]] | [[SE_Software_Dev_Process]] | [[SE_Algorithms_and_Desk_Checks]]

@@ -9,7 +9,7 @@ updated: 2026-07-15
 
 # Secure Software Architecture — Year 12 SE
 
-> Self-contained note on designing software for security, coding securely, security terminology, and the Australian privacy context — built ONLY from the classroom sources (SSA1/SSA2/SSA3, the SSA pptx, W3, and the student sample answers). Gaps are flagged honestly: the NESA specs PDF has no security dot points, and Privacy Act/APPs appear in only ONE student sample answer (OAIC and the NDB scheme are NOT in any provided document). No external textbook content added.
+> Self-contained note on designing software for security, coding securely, security terminology, and the Australian privacy context — built from SSA1/SSA2/SSA3, the SSA pptx and the student sample answers. Gaps are flagged honestly: the NESA specs PDF has no dedicated security dot points, and Privacy Act/APPs appear in only ONE student sample answer (OAIC and the NDB scheme are NOT in any provided document). No external textbook content added except the clearly labelled supplementary CSRF definition (general security gloss; not defined in the checked SSA classroom PDFs).
 
 ---
 
@@ -41,17 +41,13 @@ updated: 2026-07-15
 
 ---
 
-## 3. Security Terminology (SSA3 + pptx + W3)
+## 3. Security Terminology (SSA3 + pptx)
 
 - **Cryptography:** "art and science of making data unreadable except to those who should be able to access it." Privacy="how secret data is"; Security="how safe data is"; Vulnerability="security gap"; Session="specific instance of an app and its data in memory." [pptx]
-- **Encryption** = scramble into unreadable **ciphertext** decipherable only with a key. [W3]
-- **Types [W3]:**
-  - **Hash functions** — no key, fixed-length fingerprint, integrity + digital signatures (MD5 differs on tiny change).
-  - **Symmetric-key** — same key both ways, fast, needs secure key distribution; **AES** "gold standard" 128-bit blocks.
-  - **Asymmetric/public-key** — public (shareable) + private (secret); secure comms + digital signatures.
-- **SSL/TLS:** SSL (1995) encrypts site↔user, replaced by **TLS**; identity verified via **handshake** ("like a digital signature"); sites show **HTTPS**. [W3] (Full TLS handshake also covered in [[SE_Web_Programming]] §7.)
-- **Risks to check:** XSS, invalid forwarding/redirecting, race conditions, sandboxing. [pptx/SSA3]
-- **Authentication vs Authorisation:** see [[SE_Web_Programming]] §7 (defined identically in W3).
+- **Class code examples [SSA1]:** Fernet encryption demonstrates confidentiality; SHA-256 demonstrates integrity by comparing original and modified content.
+- **Risks to check [class sources]:** XSS, invalid forwarding/redirecting, race conditions, sandboxing. [pptx/SSA3]
+- **Cross-site request forgery (CSRF):** an attack that tricks an authenticated user’s browser into sending an unintended state-changing request to a site where the user is logged in; session cookies may be sent automatically. Common defences include anti-CSRF tokens, `SameSite` cookies and origin validation. This is a general study gloss: CSRF is named as a prevention target in `README_DEMO.md`, but not defined in the checked SSA classroom PDFs.
+
 
 ---
 
@@ -65,9 +61,9 @@ updated: 2026-07-15
 
 ---
 
-## 5. NESA Syllabus Security / Privacy Dot Points
+## 5. NESA Syllabus Scope Note
 
-> **Finding:** The provided NESA specs PDF (course-specifications) contains **NO security or privacy outcomes or dot points**. Its only security-adjacent lines are: "**Cross-site scripting (XSS)** involves injecting malicious code into an otherwise safe website" and a mention of "performing a **simple encryption**" in character representation. The real SSA curriculum content lives in SSA1/SSA2/SSA3/pptx/W3.
+> **Finding:** The provided NESA course specifications contain no dedicated security or privacy dot points. The SSA classroom resources are the source for this topic's content.
 
 ---
 
@@ -76,17 +72,16 @@ updated: 2026-07-15
 | Topic | In your sources? |
 |---|---|
 | CIA triad (Confidentiality/Integrity/Availability) | Yes (pptx) |
-| Authentication / Authorisation / Accountability | Yes (pptx, W3) |
-| Encryption: hash / symmetric / asymmetric; AES, SSL/TLS | Yes (W3, pptx) |
+| Authentication / Authorisation / Accountability | Yes (pptx, SSA1) |
+| Cryptography code examples: Fernet and SHA-256 | Yes (SSA1) |
 | Security by design / Privacy by design | Yes (SSA2) |
 | Testing: SAST/DAST/pentest/vuln assessment | Yes (SSA2/pptx) |
 | Australian Privacy Act 1988 + APPs | Yes — ONE student sample answer only |
 | OAIC / Notifiable Data Breaches scheme | **No — absent from all provided docs** |
+| Cross-site request forgery (CSRF) | Supplementary: named as a prevention target in the SecureLift demo; not defined in the checked SSA classroom PDFs |
 | Least privilege / defence in depth / threat modelling | **No — absent from all provided docs** |
-| NESA security/privacy syllabus dot points | **No — not in the specs PDF** |
+| Dedicated NESA security/privacy syllabus dot points | **No — not in the provided specs PDF** |
 
-Do not add OAIC/NDB/least-privilege content to exam answers unless your teacher supplies it — it is not in the provided materials.
+Do not add OAIC/NDB/least-privilege content to exam answers unless your teacher supplies it — it is not in the provided materials. Treat CSRF as supplementary, not confirmed assessment scope, unless your teacher confirms it.
 
 ---
-
-> **See also:** [[SE_Web_Programming]] | [[SE_Software_Automation]] | [[SE_Software_Dev_Process]] | [[SE_Algorithms_and_Desk_Checks]]

@@ -29,14 +29,17 @@ CPUs vs microcontrollers, the registers and **fetch–execute cycle**, machine l
 
 ## Year 12
 
+### Overview
+- [[Year_12_Software_Engineering_Summary]]: definitions grouped under the three Year 12 topics; no cross-topic glossary.
+
 ### 4. [[Programming_For_The_Web]]
 Client vs server-side, networking hardware and topologies, protocols and ports, the six V's of big data, web mining, W3C and accessibility, **CSS syntax**, version control, MVC and CMSes, **SQL and ORM**, the TLS handshake, encryption types, digital signatures, XSS, web storage, and the Caesar cipher.
 
 ### 5. [[Software_Automation]]
-AI vs ML, the four ML types, **the three stages of MLOps**, regression algorithms with **fully worked least-squares calculations**, logistic regression and the sigmoid, KNN, neural networks (training vs execution cycle), decision trees and overfitting, psychology links, and the ethics of automation.
+AI vs ML, the four ML types, **the three stages of MLOps**, best-use guidance for linear, polynomial, logistic and KNN regression (plus decision-tree regression), neural networks, decision trees and overfitting, psychology links, and the ethics of automation.
 
 ### 6. [[Secure_Software_Architecture]]
-Security by design, the **six fundamental security concepts**, security across the SDLC, secure coding practices, common vulnerabilities, validation and sanitisation, the five testing strategies, cryptography, RBAC and MFA, and the Australian privacy framework.
+Security by design, the **six fundamental security concepts**, security across the SDLC, secure coding practices, common vulnerabilities, validation and sanitisation, the five testing strategies, the SSA1 Fernet and SHA-256 examples, RBAC and MFA, and the Australian privacy context.
 
 ---
 
@@ -67,23 +70,6 @@ Your own projects live in the Brain vault note `SE_Your_Projects`: the D&D App s
 | **Analyse** | Identify components and relationships; draw out implications |
 | **Justify** | Support an argument with evidence |
 | **Evaluate** | Make a judgement based on criteria |
-
----
-
-## High-Value Cross-Unit Threads
-
-These recur across units — knowing the links is what separates top-band answers.
-
-| Thread | Where it appears |
-|---|---|
-| **Security by design** | [[Secure_Software_Architecture]] (core) · [[Programming_Fundamentals]] (non-functional requirement) · [[Programming_For_The_Web]] (XSS, TLS) |
-| **Unsanitised input** | XSS and SQL injection in [[Programming_For_The_Web]] and [[Secure_Software_Architecture]] |
-| **Encryption and hashing** | [[Programming_For_The_Web]] §8 · [[Secure_Software_Architecture]] §3 |
-| **Desk checks / algorithms** | [[Programming_Fundamentals]] §3 — applies to any code fragment in any unit |
-| **Effectiveness criteria** | [[Object_Oriented_Programming]] §4 — use these to evaluate any solution |
-| **Version control & collaboration** | [[Object_Oriented_Programming]] §5 · [[Programming_For_The_Web]] §5 |
-| **Regression** | [[Software_Automation]] §3 — also underlies neural network training |
-| **Closed-loop feedback** | [[Mechatronics]] §5 — the same principle underlies model monitoring in MLOps |
 
 ---
 

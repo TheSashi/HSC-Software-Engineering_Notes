@@ -21,7 +21,7 @@ aliases:
 
 # Software Automation — HSC Final Notes
 
-> **Year 12, Unit 6** | AI vs ML, types of machine learning, MLOps, regression algorithms with worked calculations, neural networks and decision trees, and the ethics of automation.
+> **Year 12, Unit 6** | AI vs ML, types of machine learning, MLOps, when to use each regression model, neural networks and decision trees, and the ethics of automation.
 
 ---
 
@@ -135,254 +135,21 @@ available data          testing & validation
 
 > **NESA scope**: "Linear regression and polynomial regression algorithms are used to **predict values in a continuous range**. **Logistic regression is used for classification problems.** Students should know how to **design programs which use and apply** these algorithms but are **not expected to implement (or code) these complex algorithms.**"
 
-**Regression generally**: "Using past and present mathematical data to predict future values. Also known as finding the **Line of Best Fit**."
+**Choose by the kind of answer you need and the pattern in the data:**
 
-| Type | Purpose | Shape |
+| Model | Best used when... | Why / practical note |
 |---|---|---|
-| **Linear** | "Drawing a straight line that helps guess" a value; good where one thing increases as another increases | Straight line |
-| **Polynomial** | "Finds patterns that aren't straight — draws a **curvy** line" | Curve |
-| **Logistic** | "Helps computers make **yes/no** decisions, like 'Will it rain?'" | S-curve (sigmoid) |
-| **K-Nearest Neighbours (KNN)** | "Group things by looking at what's **nearby**" | Not smooth |
+| **Linear regression** | The outcome is a continuous number and the plotted relationship is roughly a straight trend. | Useful for a simple, interpretable estimate when the change is approximately steady. |
+| **Polynomial regression** | The outcome is a continuous number and the plotted relationship has a clear curve. | Captures a curved trend; use only when the curve reflects the data, not random noise. |
+| **Logistic regression** | The outcome is one of two categories, such as yes/no or pass/fail, and you want a probability. | Produces a probability from 0 to 1; a chosen threshold turns it into a class. Despite its name, this is for classification, not a continuous-value prediction. |
+| **K-nearest neighbours (KNN) regression** | The outcome is a number and similar, nearby examples are likely to have similar results. | Predicts from the target values of the nearest examples instead of fitting one global equation. A small K is more sensitive to local variation; a larger K gives smoother predictions. |
+| **Decision-tree regression** | A numerical prediction can be explained through clear feature-based branches, and interpretability matters. | The tree is easy to follow, but can overfit; pruning helps control this. See §4.2. |
 
-> **The choice rule**: plot the data first. **Curvy → polynomial. Straight → linear. Yes/no outcome → logistic.**
-
-### 3.1 Linear Regression — the Least Squares Method
-
-**Goal**: find the equation of the straight line of best fit, **y = mx + b**
-
-**Method**: build a table of `x | y | xy | x²`, sum each column, then:
-
-```
-      n·Σxy − Σx·Σy                  Σy − m·Σx
-m = ───────────────            b = ─────────────
-      n·Σx² − (Σx)²                       n
-```
-
-#### Worked Example 1
-
-Data: x = [1, 2, 3, 4, 5], y = [2, 3, 5, 6, 8]
-
-| x | y | xy | x² |
-|---|---|---|---|
-| 1 | 2 | 2 | 1 |
-| 2 | 3 | 6 | 4 |
-| 3 | 5 | 15 | 9 |
-| 4 | 6 | 24 | 16 |
-| 5 | 8 | 40 | 25 |
-| **Σ = 15** | **Σ = 24** | **Σ = 87** | **Σ = 55** |
-
-n = 5
-
-```
-m = (5 × 87 − 15 × 24) / (5 × 55 − 15²)
-  = (435 − 360) / (275 − 225)
-  = 75 / 50
-  = 1.5
-
-b = (24 − 1.5 × 15) / 5
-  = (24 − 22.5) / 5
-  = 1.5 / 5
-  = 0.3
-```
-
-> **y = 1.5x + 0.3**
-
-**Function table:**
-
-| x | 1 | 2 | 3 | 4 | 5 |
-|---|---|---|---|---|---|
-| y | 1.8 | 3.3 | 4.8 | 6.3 | 7.8 |
-
-#### Worked Example 2 — ⚠️ correcting an error in the class worksheet
-
-Data: x = [2, 4, 6, 8], y = [3, 4, 7, 9]
-
-| x | y | xy | x² |
-|---|---|---|---|
-| 2 | 3 | 6 | 4 |
-| 4 | 4 | 16 | 16 |
-| 6 | 7 | 42 | 36 |
-| 8 | 9 | 72 | 64 |
-| **Σ = 20** | **Σ = 23** | **Σ = 136** | **Σ = 120** |
-
-n = 4
-
-> **⚠️ The worksheet recorded Σx = 22. The correct value is Σx = 20** (2 + 4 + 6 + 8 = 20). That single error produced the answers **m = −9.5, b = 58**, which are internally consistent with Σx = 22 but wrong for this data.
+> **Fast choice:** yes/no outcome → logistic. Numeric outcome → straight pattern → linear; clear curve → polynomial; similar nearby cases → KNN; transparent feature-based branches → decision tree.
 >
-> **Why you should have caught it**: the y values **rise** (3 → 9) as x rises, so the slope **must be positive**. A line predicting y = 39 down to y = −18 cannot be a line of best fit for data running 3 to 9. **Always sanity-check the sign of your slope against the trend of the data.**
+> The straight-versus-curved rule and logistic classification purpose are stated in SA2. The KNN and decision-tree rows summarise the practical implications of their methods described in SA2/SA3.
 
-**Correct working:**
-
-```
-m = (4 × 136 − 20 × 23) / (4 × 120 − 20²)
-  = (544 − 460) / (480 − 400)
-  = 84 / 80
-  = 1.05
-
-b = (23 − 1.05 × 20) / 4
-  = (23 − 21) / 4
-  = 2 / 4
-  = 0.5
-```
-
-> **y = 1.05x + 0.5**
-
-**Function table (correct):**
-
-| x | 2 | 4 | 6 | 8 |
-|---|---|---|---|---|
-| y | 2.6 | 4.7 | 6.8 | 8.9 |
-| *actual* | *3* | *4* | *7* | *9* |
-
-The fitted values now sit close to the actual data, which is what a line of best fit should do.
-
-### 3.2 Polynomial Regression — the Least Squares Matrix Method
-
-**Goal**: find the equation of the curve **y = ax² + bx + c**
-
-Build the LHS matrix (`x, x², x³, x⁴`) and RHS matrix (`y, xy, x²y`), sum each column, then solve the three simultaneous equations:
-
-```
-Σy    = a·Σx² + b·Σx  + c·n
-Σxy   = a·Σx³ + b·Σx² + c·Σx
-Σx²y  = a·Σx⁴ + b·Σx³ + c·Σx²
-```
-
-Eliminate **c** first (it is normally the easiest), solve for **a** and **b**, then substitute back.
-
-#### Worked Example 3
-
-Data: x = [1, 2, 3, 4, 5], y = [2, 5, 10, 17, 26], n = 5
-
-| x | x² | x³ | x⁴ | | y | xy | x²y |
-|---|---|---|---|---|---|---|---|
-| 1 | 1 | 1 | 1 | | 2 | 2 | 2 |
-| 2 | 4 | 8 | 16 | | 5 | 10 | 20 |
-| 3 | 9 | 27 | 81 | | 10 | 30 | 90 |
-| 4 | 16 | 64 | 256 | | 17 | 68 | 272 |
-| 5 | 25 | 125 | 625 | | 26 | 130 | 650 |
-| **Σ 15** | **Σ 55** | **Σ 225** | **Σ 979** | | **Σ 60** | **Σ 240** | **Σ 1034** |
-
-> **⚠️ The worksheet recorded Σx³ = 255. The correct value is 225** (1 + 8 + 27 + 64 + 125 = 225).
-
-**Answer: y = x² + 1**
-
-**Verification** — substitute a = 1, b = 0, c = 1 into all three equations:
-
-| Equation | Check |
-|---|---|
-| 60 = 55(1) + 15(0) + 5(1) | 55 + 0 + 5 = **60** ✓ |
-| 240 = 225(1) + 55(0) + 15(1) | 225 + 0 + 15 = **240** ✓ |
-| 1034 = 979(1) + 225(0) + 55(1) | 979 + 0 + 55 = **1034** ✓ |
-
-All three hold exactly, so **y = x² + 1** is correct.
-
-**Function table:**
-
-> **⚠️ The worksheet's table was filled in using x² + x + 1** (giving 3, 7, 13, 21, 31), not the derived equation x² + 1. Use the equation you actually solved for.
-
-| x | 1 | 2 | 3 | 4 | 5 |
-|---|---|---|---|---|---|
-| **y = x² + 1** | **2** | **5** | **10** | **17** | **26** |
-
-This is a **perfect fit** — the curve passes exactly through every data point.
-
-#### Worked Example 4
-
-Data: x = [2, 4, 6, 8, 10], y = [4, 12, 18, 22, 25], n = 5
-
-| Σx | Σx² | Σx³ | Σx⁴ | Σy | Σxy | Σx²y |
-|---|---|---|---|---|---|---|
-| 30 | 220 | 1800 | 15664 | 81 | 590 | 4764 |
-
-*(These sums in the worksheet are all correct.)*
-
-**Simultaneous equations:**
-
-```
- 81  = 220a  +   30b  +   5c
-590  = 1800a +  220b  +  30c
-4764 = 15664a + 1800b + 220c
-```
-
-**Solving gives:**
-
-> **y = −0.2143x² + 5.1714x − 5.4**
-
-**Function table:**
-
-| x | 2 | 4 | 6 | 8 | 10 |
-|---|---|---|---|---|---|
-| **fitted y** | 4.09 | 11.86 | 17.91 | 22.26 | 24.89 |
-| *actual y* | *4* | *12* | *18* | *22* | *25* |
-
-> Note the **negative `a`** — the curve bends downward, matching data that rises steeply then flattens off. A negative coefficient on x² is entirely normal and indicates a concave-down curve.
-
-### 3.3 Logistic Regression
-
-**Aim**: "Calculate the **probability** of something being a **yes (1) or no (0)**."
-
-Produces a **sigmoid / S-curve running from 0 to 1**.
-
-**Worked example — passing grade:**
-
-- The passing grade is approximately **3.5**, where the curve crosses the **0.5 probability threshold**
-- A mark of **4.5** → approximately **50%** probability
-- A mark of **7** → approximately **95%** probability
-
-> **Why an S-curve and not a straight line?** A straight line would eventually predict probabilities above 1 and below 0, which are meaningless. The sigmoid **asymptotes** — it approaches 0 and 1 but never exceeds them.
-
-> **The 0.5 threshold** is the decision boundary: above it the model predicts "yes", below it "no".
-
-### 3.4 K-Nearest Neighbours (KNN)
-
-> "KNN regression **does not make data fit a formula**. Instead, it highlights **K points within range** of the Line of Best Fit. The line **will not be smooth**."
-
-**How it works**: to predict a value, find the **K nearest** data points and **average** them.
-
-**Effect of K**: increasing K changes which points are considered near the line — a larger K gives a smoother but less locally sensitive result; a smaller K follows the data closely but is more affected by noise.
-
-> **The key contrast**: linear and polynomial regression produce an **equation**. KNN produces **no equation at all** — it just looks at neighbours each time it is asked. That is why the output line is not smooth.
-
-### 3.5 Programming Regression
-
-**Linear (Python, from first principles):**
-
-```python
-n   = len(x)
-Sx  = sum(x);  Sy = sum(y)
-Sxy = sum(a*b for a, b in zip(x, y))
-Sx2 = sum(a*a for a in x)
-
-m = (n*Sxy - Sx*Sy) / (n*Sx2 - Sx**2)
-b = (Sy - m*Sx) / n
-print(f"y = {m}x + {b}")
-```
-
-**Polynomial (using a library):**
-
-```python
-import numpy
-a, b, c = numpy.polyfit(x, y, 2)      # 2 = degree of the polynomial
-```
-
-**Linear regression using ML frameworks (NESA example):**
-
-```python
-import numpy as np
-from sklearn.linear_model import LinearRegression
-
-x = np.array([[2], [4], [6], [8], [10], [12], [14], [16]])
-y = np.array([1, 3, 5, 7, 9, 11, 13, 15])
-
-model = LinearRegression()
-model.fit(x, y)                 # determine the line of best fit
-
-y_prediction = model.predict(4)     # known data      → 3
-y_prediction = model.predict(4.5)   # unknown data    → 3.5
-```
-
-> Note the pattern: **create the model → `fit()` it to the data → `predict()` new values.** This three-step pattern is what "designing a program that applies the algorithm" means — you are not expected to code the maths itself.
+**Program-design reminder:** NESA expects you to design a program that applies an appropriate algorithm, not code the complex maths. Focus on the model choice, input data, and predicted output.
 
 ---
 
@@ -541,7 +308,7 @@ Plus: "how patterns in human behaviour influence ML and AI — psychological res
 | **"Distinguish AI from ML"** | Define both → state the subset relationship → give an example of AI that is **not** ML (rule-based expert system) |
 | **"Classify this scenario's ML type"** | Ask: are the training examples **labelled**? Are there **rewards**? Then justify |
 | **"Describe the three stages of MLOps"** | Design → Model development → Operations, with the four bullet points under each |
-| **"Calculate the line of best fit"** | Build the `x, y, xy, x²` table → sum → apply the m and b formulas → **sanity-check the slope sign** |
+| **"Choose a regression model"** | Identify the outcome and data pattern → select the model whose best-use conditions fit → justify the choice |
 | **"Compare neural networks and decision trees"** | Accuracy vs interpretability → data requirements → overfitting → judge by context |
 | **"Explain the training and execution cycles"** | Training determines weightings/thresholds from known responses; execution uses them on new data |
 | **"Discuss the ethics of automation"** | Cover all five required impact areas, then judge with human oversight |
@@ -562,11 +329,11 @@ Plus: "how patterns in human behaviour influence ML and AI — psychological res
 | **Data wrangling** | Cleaning and restructuring raw data | **Feature engineering** — choosing the inputs |
 | **Feature engineering** | Constructing the input variables | Data wrangling (cleaning) |
 | **Validation** | Testing on data never seen in training | Testing during training |
-| **Linear regression** | Straight line; continuous prediction | **Logistic** — S-curve; classification |
-| **Polynomial regression** | Curve; continuous prediction | Linear (straight line) |
-| **Logistic regression** | Probability 0–1 for **yes/no** classification | Linear regression (continuous values) |
-| **KNN** | No equation — averages nearby points | Linear/polynomial (produce an equation) |
-| **Line of best fit** | The fitted equation | The raw data points |
+| **Linear regression** | Best for continuous numeric outcomes with a roughly straight trend | **Logistic** — yes/no classification |
+| **Polynomial regression** | Best for continuous numeric outcomes with a clear curved trend | Linear (roughly straight trend) |
+| **Logistic regression** | Best for yes/no classification when a probability is useful | Linear/polynomial/KNN (continuous numeric prediction) |
+| **KNN** | Best for numeric predictions when similar nearby examples tend to have similar results | Global trend models such as linear/polynomial |
+| **Line of best fit** | A modelled trend that summarises the relationship in plotted data | The raw data points |
 | **Sigmoid** | S-shaped curve bounded by 0 and 1 | A straight line (unbounded) |
 | **Neural network** | Layered interconnected nodes; black box | **Decision tree** — interpretable branching rules |
 | **Weighting** | Importance of a connection | **Threshold** — the firing level |
@@ -594,14 +361,13 @@ Plus: "how patterns in human behaviour influence ML and AI — psychological res
 | Feature engineering | Selecting and constructing the model's input variables |
 | RPA | Automation of repetitive individual tasks |
 | BPA | Automation of entire business workflows |
-| Regression | Using past and present data to predict future values |
-| Line of best fit | The equation minimising the distance to all data points |
-| Linear regression | Fitting a straight line, y = mx + b |
-| Polynomial regression | Fitting a curve, y = ax² + bx + c |
-| Logistic regression | Producing a 0–1 probability for classification |
+| Regression | Using data to predict an outcome; the model choice depends on whether the target is numeric or a class |
+| Line of best fit | A trend used to represent the relationship between plotted data points |
+| Linear regression | Use for a continuous numeric outcome with a roughly straight trend |
+| Polynomial regression | Use for a continuous numeric outcome with a clear curved trend |
+| Logistic regression | Use for yes/no classification; produces a probability from 0 to 1 |
 | Sigmoid | The S-shaped curve produced by logistic regression |
-| KNN | Predicting by averaging the K nearest data points |
-| Least squares | Method minimising the sum of squared distances to the line |
+| KNN regression | Use when similar nearby examples are expected to have similar numeric outcomes |
 | Neural network | Layers of interconnected nodes mimicking the brain |
 | Training cycle | Determining weightings and thresholds from known responses |
 | Execution cycle | Using trained values to determine output for new data |
@@ -621,13 +387,11 @@ Plus: "how patterns in human behaviour influence ML and AI — psychological res
 - [ ] All four ML types, and classify a given scenario
 - [ ] DevOps, RPA and BPA — and RPA vs BPA
 - [ ] The **three stages of MLOps** and the four bullet points under each
-- [ ] Choose between linear, polynomial and logistic for given data
-- [ ] Compute a linear regression by hand — table, sums, m, b
-- [ ] **Sanity-check the slope sign against the data trend**
-- [ ] Set up the polynomial least-squares matrix and three simultaneous equations
-- [ ] Explain the logistic sigmoid and the 0.5 threshold
-- [ ] Explain why KNN produces no equation and an unsmooth line
-- [ ] The create → fit → predict programming pattern
+- [ ] Choose a suitable regression model from the outcome type and data pattern
+- [ ] Explain why logistic regression is for yes/no classification and how a probability threshold is used
+- [ ] Explain when KNN is useful and how changing K affects the prediction
+- [ ] Explain the benefit and overfitting risk of decision-tree regression
+- [ ] Describe how a program applies a chosen model to inputs to produce predictions, without implementing its maths
 - [ ] Neural network architecture; training vs execution cycle
 - [ ] Weighting vs threshold
 - [ ] Decision trees, overfitting and pruning
@@ -638,5 +402,3 @@ Plus: "how patterns in human behaviour influence ML and AI — psychological res
 - [ ] Argue a qualified "to what extent" judgement with human oversight
 
 ---
-
-> **See also:** [[Programming_For_The_Web]] | [[Secure_Software_Architecture]] | [[Programming_Fundamentals]] | [[Object_Oriented_Programming]] | [[Mechatronics]] | [[MOC]]

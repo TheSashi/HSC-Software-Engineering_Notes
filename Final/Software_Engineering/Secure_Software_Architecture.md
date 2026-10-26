@@ -17,10 +17,9 @@ aliases:
   - CIA Triad
   - Coding Securely
 ---
-
 # Secure Software Architecture — HSC Final Notes
 
-> **Year 12, Unit 7** | Designing software for security, the six security concepts, secure coding practices, testing strategies, encryption and the Australian privacy context.
+> **Year 12, Unit 7** | Designing software for security, the six security concepts, secure coding practices, testing strategies and the Australian privacy context.
 
 ---
 
@@ -135,20 +134,18 @@ Security is a **non-functional requirement** "embedded **throughout** the softwa
 
 ### 2.3 Common Vulnerabilities
 
-| Vulnerability | Definition |
-|---|---|
-| **Cross-site scripting (XSS)** | "Injecting **malicious code** into an otherwise safe website. Usually done through **user input that is not sufficiently sanitised** before being processed and stored on the server" |
-| **Broken authentication and session management** | Weak credentials, exposed session IDs, sessions that don't expire |
-| **Invalid forwarding and redirecting** | Redirecting users to attacker-controlled destinations via unvalidated URL parameters |
-| **Race conditions** | Two operations accessing the same resource simultaneously, producing an unintended result depending on timing |
-| **Injection attacks** | Untrusted input executed as a command — SQL injection targets the database |
+> **Supplementary term:** CSRF is mentioned as a prevention target in the SecureLift demo (`Brain/Software_Engineering/README_DEMO.md`), but the checked SSA classroom PDFs do not define it. The definition and defence below are a general security gloss, not a confirmed assessment-scope claim.
+
+| Vulnerability                                    | Definition                                                                                                                                                                                                                                                                                 |
+| ------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **Cross-site scripting (XSS)**                   | "Injecting **malicious code** into an otherwise safe website. Usually done through **user input that is not sufficiently sanitised** before being processed and stored on the server"                                                                                                      |
+| **Cross-site request forgery (CSRF)**            | An attack that tricks a browser used by a logged-in user into sending an unwanted state-changing request to a site where the user is logged in; session cookies may be attached automatically. Common defences include anti-CSRF tokens, `SameSite` cookies and validating request origin. |
+| **Broken authentication and session management** | Weak credentials, exposed session IDs, sessions that don't expire                                                                                                                                                                                                                          |
+| **Invalid forwarding and redirecting**           | Redirecting users to attacker-controlled destinations via unvalidated URL parameters                                                                                                                                                                                                       |
+| **Race conditions**                              | Two operations accessing the same resource simultaneously, producing an unintended result depending on timing                                                                                                                                                                              |
+| **Injection attacks**                            | Untrusted input is treated as an instruction by the system; the tram model answer recommends input validation and sanitisation to prevent them                                                                                                                                             |
 
 > **Sandboxing** = running code in an isolated environment with restricted access to the rest of the system, so that if it is compromised the damage is contained.
-
-> **Confusing pair — XSS vs SQL injection**
-> **XSS** injects script that runs in **another user's browser**.
-> **SQL injection** injects commands that run on the **database server**.
-> Both stem from the same root cause: **unsanitised user input**.
 
 ### 2.4 The Universal Defence: Input Validation and Sanitisation
 
@@ -157,7 +154,7 @@ Security is a **non-functional requirement** "embedded **throughout** the softwa
 | **Validation** | Checking input **conforms to expectations** — right type, length, format, range |
 | **Sanitisation** | **Neutralising** dangerous content — escaping or stripping characters that could be interpreted as code |
 
-> **Never trust user input.** Validate on the **server**, not only in the browser — client-side checks can be bypassed entirely.
+> **Check and sanitise input before processing it.** The class tram model answer uses validation, sanitisation and error handling to prevent injection.
 
 ### 2.5 Testing Strategies
 
@@ -189,7 +186,7 @@ From the class model answer:
 | Legal | **Australian Privacy Act 1988 + APPs** — obligation to "collect only necessary data, store it securely, and destroy it when no longer needed" |
 | Design phase | A **privacy impact assessment** should be conducted during design |
 | Coding | **Input validation and error handling** to prevent injection |
-| Process | Code reviews, penetration tests, Agile sprints, **SAST** |
+| Process | Code reviews, penetration tests, Agile sprints, **SAST**, version control |
 
 > **RBAC (Role-Based Access Control)** = permissions assigned to **roles** rather than individuals. A user gets a role (driver, scheduler, admin), and the role carries the permissions. Simpler to manage and audit than per-user permissions.
 
@@ -197,49 +194,14 @@ From the class model answer:
 
 ---
 
-## 3. Cryptography and Encryption
+## 3. Cryptography in the SSA Class Examples
 
-### 3.1 Core Terms
+The SSA classroom materials use cryptography in two code examples:
 
-| Term | Definition |
-|---|---|
-| **Cryptography** | "The art and science of making data **unreadable except to those who should be able to access it**" |
-| **Encryption** | Scrambling data into unreadable **ciphertext**, decipherable only with a key |
-| **Plaintext** | The readable original data |
-| **Ciphertext** | The scrambled, unreadable output |
-| **Privacy** | "How **secret** data is" |
-| **Security** | "How **safe** data is" |
-| **Vulnerability** | "A **security gap**" |
-| **Session** | "A specific **instance of an app and its data in memory**" |
+- **Confidentiality:** Fernet encryption is demonstrated in SSA1.
+- **Integrity:** SHA-256 is used in SSA1 to compare original and modified content.
 
-### 3.2 The Three Encryption Types
-
-| Type | Key | Purpose | Example |
-|---|---|---|---|
-| **Hash functions** | **No key** | **Integrity** and digital signatures. Produces a fixed-length fingerprint that changes completely on a tiny input change | MD5, SHA-256 |
-| **Symmetric-key** | **Same key** both ways | Fast bulk encryption. Weakness: **secure key distribution** | **AES** — "gold standard", 128-bit blocks |
-| **Asymmetric / public-key** | **Public** (shareable) + **private** (secret) | Secure communication and digital signatures | RSA |
-
-> **Hashing is one-way.** You cannot reverse a hash to recover the original. That is precisely why it is used for **password storage** and **integrity checking** — not for sending secret messages you need to read later.
-
-### 3.3 SSL and TLS
-
-- **SSL** (1995) encrypts data between site and user
-- Replaced by **TLS**, which is more secure
-- Identity is verified via a **handshake** ("like a digital signature")
-- Sites using them display **HTTPS**
-
-*The full four-stage TLS handshake is covered in [[Programming_For_The_Web]] §8.2.*
-
-### 3.4 Digital Signatures
-
-```
-SENDER:    hash the message → encrypt the hash with the sender's PRIVATE key
-RECEIVER:  decrypt with the sender's PUBLIC key → compare against own hash
-           match → INTEGRITY + AUTHENTICITY confirmed
-```
-
-> **The key order is the reverse of encryption for secrecy.** To keep something **secret**, encrypt with the recipient's **public** key. To **prove it came from you**, encrypt with your own **private** key.
+These examples support the security concepts in §1.3.
 
 ---
 
@@ -277,18 +239,7 @@ RECEIVER:  decrypt with the sender's PUBLIC key → compare against own hash
 
 ## 5. Impact of Safe and Secure Software Development
 
-### 5.1 Benefits of Collaboration
-
-Secure development is a team activity. Collaboration improves security through:
-
-- **Code review** catching flaws a single developer would miss
-- **Shared standards** ensuring consistent handling of input, sessions and errors
-- **Version control** providing traceability of who changed what and when
-- **Diverse perspectives** identifying threats an individual would not anticipate
-
-*Collaboration factors are covered in [[Object_Oriented_Programming]] §5.*
-
-### 5.2 Safe and Secure Practices
+### 5.1 Safe and Secure Practices
 
 | Area | Practice |
 |---|---|
@@ -296,7 +247,7 @@ Secure development is a team activity. Collaboration improves security through:
 | **Security** | Authentication, authorisation, logging, patching, testing |
 | **Privacy** | Data minimisation, consent, transparency, retention limits |
 
-### 5.3 The Enterprise Benefit
+### 5.2 The Enterprise Benefit
 
 Secure software protects **reputation**, avoids **regulatory penalties**, maintains **user trust**, reduces **incident response costs**, and enables the business to operate in regulated markets.
 
@@ -342,17 +293,14 @@ Secure software protects **reputation**, avoids **regulatory penalties**, mainta
 | **Privacy** | About **rights** — who *should* see data | **Security** — the technical measures |
 | **Vulnerability** | A security **gap** | An **exploit** (the attack using it) |
 | **Threat** | A potential source of harm | A vulnerability (the weakness it targets) |
-| **XSS** | Script injected, runs in another **user's browser** | **SQL injection** — runs on the **database** |
+| **XSS** | Malicious code is injected into an otherwise safe website, commonly through unsanitised input | Validate and sanitise input before processing it |
+| **CSRF** | Tricks an authenticated user’s browser into submitting an unintended state-changing request | Anti-CSRF token, SameSite cookie or origin validation; supplementary, see §2.3 |
 | **Race condition** | Timing-dependent conflict between operations | A logic error (deterministic) |
 | **Sandboxing** | Isolating code so damage is contained | Encryption |
 | **Validation** | Input **conforms** to expectations | **Sanitisation** — neutralising dangerous content |
 | **SAST** | **Static** — source code, not running | **DAST** — **dynamic**, running application |
 | **Vulnerability assessment** | **Lists** weaknesses (breadth) | **Penetration test** — **exploits** them (depth) |
-| **Hashing** | **One-way**, no key, for integrity | **Encryption** — reversible with a key |
-| **Symmetric** | One shared key; fast | **Asymmetric** — public/private pair; slow |
-| **Plaintext** | Readable original | **Ciphertext** — scrambled output |
-| **Digital signature** | Encrypt hash with your **private** key | Encryption for secrecy uses the **public** key |
-| **SSL** | The original 1995 protocol | **TLS** — its more secure replacement |
+| **SHA-256 example** | SSA1 uses it to compare original and modified content for integrity | Fernet encryption — used for confidentiality |
 | **RBAC** | Permissions attached to **roles** | Per-user permissions |
 | **MFA** | Two or more **independent** factors | Two passwords (same factor type) |
 | **Least privilege** | Minimum access needed to do the job | Convenience-based access |
@@ -380,7 +328,7 @@ Secure software protects **reputation**, avoids **regulatory penalties**, mainta
 | Session management | Securing session tokens, timeouts and invalidation |
 | Exception management | Handling errors without leaking internal detail |
 | Cross-site scripting | Injecting malicious code via unsanitised user input |
-| SQL injection | Injecting commands executed by the database |
+| Cross-site request forgery (CSRF) | Tricking an authenticated user’s browser into sending an unintended request; anti-CSRF tokens, `SameSite` cookies and origin checks can help prevent it. Supplementary term, not confirmed as classroom exam scope. |
 | Race condition | Timing-dependent conflict between simultaneous operations |
 | Broken authentication | Weak credentials or improperly managed sessions |
 | Invalid forwarding | Redirecting users via unvalidated destination parameters |
@@ -393,12 +341,8 @@ Secure software protects **reputation**, avoids **regulatory penalties**, mainta
 | Vulnerability assessment | Systematic identification and ranking of weaknesses |
 | Penetration testing | Authorised simulated attack to exploit weaknesses |
 | Cryptography | Making data unreadable except to those authorised |
-| Encryption | Scrambling plaintext into ciphertext using a key |
-| Hash function | One-way keyless transformation producing a fixed-length fingerprint |
-| Symmetric encryption | Same key encrypts and decrypts; fast (AES) |
-| Asymmetric encryption | Public and private key pair |
-| Digital signature | Hash encrypted with the sender's private key |
-| SSL / TLS | Protocols encrypting traffic between site and user |
+| Encryption | Demonstrated with Fernet in SSA1 as an example of confidentiality |
+| SHA-256 | Hashing algorithm used in SSA1's integrity example |
 | RBAC | Access permissions assigned to roles rather than individuals |
 | MFA | Authentication requiring two or more independent factors |
 | Privacy Act 1988 | Principal Commonwealth privacy legislation |
@@ -420,16 +364,14 @@ Secure software protects **reputation**, avoids **regulatory penalties**, mainta
 - [ ] Map security activities across all eight SDLC steps
 - [ ] Distinguish security by design from privacy by design, with a scenario
 - [ ] Three secure coding practices — memory, session, exception management
-- [ ] Explain XSS, SQL injection, race conditions, broken authentication, invalid forwarding
-- [ ] Validation vs sanitisation, and why server-side matters
+- [ ] Explain XSS, race conditions, broken authentication and invalid forwarding; describe sandboxing
+- [ ] Supplementary: define CSRF and name a common defence; it is not confirmed as examinable in the checked SSA classroom PDFs
+- [ ] Validation vs sanitisation, and checking input before processing
 - [ ] All five testing strategies; SAST vs DAST; assessment vs pen test
 - [ ] Recommend a full control set using the tram model
 - [ ] RBAC and MFA — what they are and what attacks they defeat
-- [ ] Three encryption types; why hashing is one-way
-- [ ] Digital signature steps and the reversed key order
+- [ ] Explain the SSA1 Fernet and SHA-256 examples for confidentiality and integrity
 - [ ] Privacy Act 1988, APPs, and the three obligations from your class notes
 - [ ] Data minimisation, least privilege, defence in depth
 
 ---
-
-> **See also:** [[Programming_For_The_Web]] | [[Software_Automation]] | [[Programming_Fundamentals]] | [[Object_Oriented_Programming]] | [[Mechatronics]] | [[MOC]]

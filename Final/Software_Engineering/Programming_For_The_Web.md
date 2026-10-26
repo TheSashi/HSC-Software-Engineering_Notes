@@ -127,7 +127,7 @@ Both show "where a computer is located." Highest IPv4 = `255.255.255.255`; IPv6 
 
 ### 2.5 Packets and Packet Switching
 
-> Packet switching ensures "data packets get to their destination on time and as free of errors as possible — **even if sent out of sequence**."
+> Packet switching divides data into packets that may travel by different routes and arrive out of order. TCP provides reliable, ordered delivery by retransmitting lost data.
 
 **Every packet contains:**
 
@@ -141,14 +141,19 @@ Packet structure is often described as **header** (addressing), **body/payload**
 
 | Protocol | Port | Use |
 |---|---|---|
+| **TCP/IP** | — | TCP provides reliable, ordered transport; retransmits lost data |
 | **HTTP** | **80** | General websites |
-| **HTTPS** | **443** | Banking and secure sites |
+| **HTTPS** | **443** | Secure web traffic |
 | **FTP** | **21** | File transfer |
-| **SMTP** | **25** | **Sends** mail |
-| **POP** | — | **Collects** email |
+| **SFTP** | **22** | Secure file transfer over SSH |
+| **SMTP** | **25** | Sends mail |
+| **POP3 (POP)** | **110** | Collects email |
+| **IMAP** | **143** | Synchronises email on the server |
 | **DNS** | **53** | Name resolution |
-| **SSH** | **22** | Secure shell (cloud and enterprise) |
-| **SSL/TLS** | — | Encrypts connections |
+| **SSH** | **22** | Secure remote login to servers |
+| **SSL/TLS** | — | Encrypts connections; used with protocols such as HTTPS |
+
+> **TCP** (Transmission Control Protocol) is the transport-layer protocol in the TCP/IP suite. It has no fixed service port of its own; it provides reliable, ordered delivery by retransmitting lost data.
 
 > "**Closing unnecessary ports helps prevent attacks**" — every open port is a potential entry point.
 
@@ -224,7 +229,7 @@ Location · device info · contacts · search history · message metadata · lik
 
 Data **privacy** · data **security** · data **validation** · data **accuracy** · data **sanitisation**
 
-> **Data sanitisation** = removing or masking sensitive information from a dataset before it is stored, shared or processed. It is also a **security** control — sanitising user input prevents injection attacks (see [[Secure_Software_Architecture]]).
+> **Data sanitisation** = removing or masking sensitive information from a dataset before it is stored, shared or processed.
 
 ### 3.6 Effect on Web Architecture
 
@@ -246,9 +251,7 @@ Data **privacy** · data **security** · data **validation** · data **accuracy*
 
 ### 4.1 The Need for Standards — the class scenario
 
-> Design a new web-based robot-control language for use on other planets, with **no standards**. Anyone could invent arbitrary syntax, making **interoperability impossible**. This is the argument for W3C and standardisation.
->
-> Required keywords in the exercise: `detectObstacle`, `moveForward`, `moveBackward`, `moveLeft`, `moveRight`, `stopRobot`, `startRobot`, `armForward`, `armBackward`, `armGrab`, `armPlaceInTray`.
+> The class exercise asks students to design a robot-control language without shared standards. If every developer invents different syntax, software and devices cannot interoperate. This illustrates why web technologies need common standards.
 
 ### 4.2 Web Accessibility Initiative (WAI)
 
@@ -263,7 +266,6 @@ Support for different **languages and scripts without redesign**.
 **Affects**: UTF-8 character encoding · left-to-right and **right-to-left** text direction · language tags
 **Supports**: Arabic and Hebrew (RTL scripts)
 
-> **Why "i18n"?** There are **18 letters** between the "i" and the "n" in "internationalisation".
 
 ### 4.4 Privacy vs Security
 
@@ -406,7 +408,7 @@ Server-side languages — Python, PHP, Java — "interact with the database and 
 | Framework | Language | Plus | Minus |
 |---|---|---|---|
 | **React** | JavaScript (Meta) | Component-based, **Virtual DOM** | Steep learning curve; "just a library" — usually paired with Next.js |
-| **Angular** | JS/TypeScript (Google) | **Strong typing**, enterprise-grade | Steep, verbose |
+| **Angular** | JS/TypeScript (Google) | **Strong typing**, suited to large applications | Steep, verbose |
 | **Express.js** | JavaScript (Node) | Minimalist, flexible, fast; the "E" in MEAN/MERN | Unopinionated; callback hell |
 | **Django** | Python | Rapid, secure, scalable; built-in **ORM** | Steep, monolithic, not ideal for real-time |
 | **Flask** | Python | Lightweight, easy to learn | Not ideal for complex projects; lacks built-in DB and auth |
@@ -457,7 +459,7 @@ The keyword **`AS`** may be used within a `SELECT` statement to **rename fields*
 
 ### 7.4 Sort Order
 
-`ASC` (ascending: A–Z or 0–9) · `DEC` (descending: Z–A or 9–0)
+`ASC` (ascending: A–Z or 0–9) · `DESC` (descending: Z–A or 9–0)
 
 ### 7.5 Worked Queries
 
@@ -645,55 +647,13 @@ def decrypt_left_shift_1(ch):
 
 > The `% 26` handles **wrap-around** — so that shifting back from 'a' lands on 'z' rather than a non-letter character.
 
-### 10.4 Worked Decryption Table (left shift of 1)
+### 10.4 Class Activity Link
 
-The decrypted words are all networking terminology — this doubles as revision for §2.
-
-| Ciphertext | Plaintext | Ciphertext | Plaintext |
-|---|---|---|---|
-| Ivc | **Hub** | Upqpmphz | **Topology** |
-| Txjudi | **Switch** | Qbdlfu txjudijoh | **Packet Switching** |
-| Spvufs | **Router** | Ifbe | **Head** |
-| Csjehf | **Bridge** | Cpez | **Body** |
-| Hbufxbz | **Gateway** | Gppufs | **Footer** |
-| Tubs | **Star** | Ubjm | **Tail** |
-| Sjoh | **Ring** | IUUQT | **HTTPS** |
-| Cvt | **Bus** | GUQ | **FTP** |
-| Xjsfmftt | **Wireless** | TNUQ | **SMTP** |
-| QPQ | **POP** | TTM | **SSL** |
-
-> *One row in the source ("Python → Tail") is misaligned; the correct mapping is `Ubjm` → Tail.*
-
-**Consistency check**: the W3 activities use the same convention — `Uifsf jt b tfdsfu dpef!` → "There is a secret code!" (shift 1); `Khoor Zruog!` → "Hello World!" (shift 3).
+The Starter 2 exercise applies the shift to networking vocabulary already covered in §2. The key idea is that decryption reverses the encryption shift.
 
 ---
 
-## 11. HSC Exam Response Structures
-
-### Common Question Types
-
-| Question type | How to answer |
-|---|---|
-| **"Distinguish client-side from server-side"** | Define both → name languages for each → give a worked division of labour for a real site |
-| **"Explain the TLS handshake"** | Four numbered stages → emphasise the asymmetric-to-symmetric switch and **why** |
-| **"Interpret this SQL query"** | Read clause by clause: what's displayed (SELECT) → from where (FROM) → filters vs joins (WHERE) → grouping → sort order |
-| **"Interpret this CSS fragment"** | Identify each selector type by its punctuation → state which HTML elements it targets → state the styling applied |
-| **"Explain how XSS occurs and how to prevent it"** | Define XSS → unsanitised user input stored and re-served → defence is input sanitisation and validation |
-| **"Justify the use of version control in a team"** | Define commits → name the failure modes without it → link to collaboration factors |
-| **"Evaluate the six V's for [scenario]"** | Take each V, apply it to the specific data described, then judge which pose the biggest challenge |
-
-### Paragraph Scaffold
-
-```
-Topic sentence (define the term)
-  → explain the mechanism (how the protocol/technology actually works)
-  → apply to a scenario (your project, or the case in the question)
-  → link to a syllabus concept (security, standards, accessibility, scalability)
-```
-
----
-
-## 12. Glossary — Terms Students Mix Up
+## 11. Glossary — Terms Students Mix Up
 
 | Term | Plain meaning | Don't confuse with |
 |---|---|---|
@@ -702,7 +662,8 @@ Topic sentence (define the term)
 | **Bridge** | Joins two **same** networks | **Gateway** — joins **different** networks |
 | **MAC address** | **Permanent** hardware identifier | **IP address** — changes with connection |
 | **DNS** | Translates names to IP addresses | DHCP (assigns IP addresses) |
-| **SMTP** | **Sends** mail (port 25) | **POP** — **collects** mail |
+| **TCP** | Transport-layer protocol providing reliable, ordered delivery | **HTTP/HTTPS** — application-layer protocols |
+| **SMTP** | **Sends** mail (port 25) | **POP3** — **collects** mail |
 | **HTTP (80)** | Unencrypted | **HTTPS (443)** — encrypted with TLS |
 | **Veracity** | Can the data be **trusted**? | **Variability** — does its meaning change? |
 | **Data** | Raw facts, no context | **Information** — processed to make meaning |
@@ -729,7 +690,7 @@ Topic sentence (define the term)
 
 ---
 
-## 13. Key Definitions Quick Reference
+## 12. Key Definitions Quick Reference
 
 | Term | One-Line Definition |
 |---|---|
@@ -745,6 +706,7 @@ Topic sentence (define the term)
 | MAC address | Permanent hardware identifier |
 | IP address | Network address that changes with connection |
 | DNS | Translates domain names into IP addresses |
+| TCP | Transport-layer protocol that reliably delivers data in order by retransmitting lost data |
 | Packet switching | Sending data in packets that can arrive out of sequence |
 | Big data | Data characterised by the six V's |
 | Data mining | Automatically analysing large data sets to detect patterns |
@@ -778,7 +740,7 @@ Topic sentence (define the term)
 
 ---
 
-## 14. Quick Revision Checklist
+## 13. Quick Revision Checklist
 
 - [ ] Client vs server, with languages and a worked division of labour
 - [ ] MERN and MEAN stacks
@@ -786,7 +748,7 @@ Topic sentence (define the term)
 - [ ] Six topologies with an example each
 - [ ] MAC vs IP; DNS primary and secondary
 - [ ] The three things every packet contains
-- [ ] All eight protocols and their port numbers
+- [ ] Protocols and ports, including TCP's transport-layer role (TCP has no fixed service port)
 - [ ] The five-step browser–server request lifecycle
 - [ ] The six V's, with veracity vs variability distinguished
 - [ ] Data → information → knowledge → understanding, with examples
@@ -807,5 +769,3 @@ Topic sentence (define the term)
 - [ ] Caesar cipher, including the flagged error in the starter document
 
 ---
-
-> **See also:** [[Software_Automation]] | [[Secure_Software_Architecture]] | [[Programming_Fundamentals]] | [[Object_Oriented_Programming]] | [[Mechatronics]] | [[MOC]]
