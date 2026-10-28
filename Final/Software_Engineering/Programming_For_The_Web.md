@@ -210,7 +210,7 @@ A command-line **packet capture** tool showing IPs, ports and protocols. Used fo
 
 | Term | Definition |
 |---|---|
-| **Data mining** | "Automatically analysing large data sets to detect trends or patterns" |
+| **Data mining** | Automated computational analysis of large datasets to discover meaningful patterns, trends, relationships, clusters or anomalies that are difficult to spot in individual records. Findings can inform predictions or decisions, but a pattern or correlation alone does not establish causation. The core SE source defines it as detecting trends or patterns [MAIN]; this longer clarification draws on the comparison page and is not a separate confirmed SE syllabus requirement. |
 | **Metadata** | "**Data about data** — descriptive details" (file size, date created, author) |
 
 ### 3.3 Web Mining
@@ -709,7 +709,7 @@ The Starter 2 exercise applies the shift to networking vocabulary already covere
 | TCP | Transport-layer protocol that reliably delivers data in order by retransmitting lost data |
 | Packet switching | Sending data in packets that can arrive out of sequence |
 | Big data | Data characterised by the six V's |
-| Data mining | Automatically analysing large data sets to detect patterns |
+| Data mining | Automated analysis of large datasets to find patterns or trends; correlation alone does not prove cause |
 | Metadata | Data about data |
 | Web content mining | Analysing text, images, audio and video |
 | Web structure mining | Analysing how pages link together |

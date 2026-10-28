@@ -51,6 +51,8 @@ aliases:
 
 > **The relationship to state in an exam**: ML is a **subset** of AI. AI is the broader concept; ML is one **data-driven** way of achieving it. Not all AI is ML — a rule-based expert system is AI but is explicitly programmed, so it is not ML.
 
+> **Supplementary clarification — expert system:** A traditional expert system stores domain-specific facts and human-written IF–THEN rules, then applies those rules (often through an inference engine) to reach a conclusion or recommendation. It is AI, but not ML when it follows fixed rules rather than learning patterns from training examples; a hybrid system may combine both. Your SE source notes use expert systems as an example of AI that is not ML, but this longer explanation is supplementary rather than a new separate syllabus point.
+
 ### 1.1 Types of Machine Learning
 
 | Type | Definition |
@@ -127,7 +129,7 @@ available data          testing & validation
 > **Key vocabulary**
 > **Data wrangling** = cleaning and restructuring raw data into a usable form (handling missing values, fixing formats, removing duplicates).
 > **Feature engineering** = choosing and constructing the input variables ("features") the model will learn from. Often matters more to accuracy than the choice of algorithm.
-> **Validation** = testing the model on data it has **never seen** during training, to check it generalises rather than memorises.
+> **Validation** = checking a model on a separate set of examples that were not used to fit its learned values. During development, these results help compare or tune models and check whether performance generalises beyond the training examples; a large drop from training performance can signal overfitting. In workflows that distinguish a final test set, keep that set for an independent final check. This is model validation, not input validation, which checks whether a submitted value has an allowed type, format or range.
 
 ---
 
