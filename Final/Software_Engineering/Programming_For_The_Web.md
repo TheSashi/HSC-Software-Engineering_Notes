@@ -229,7 +229,10 @@ Location · device info · contacts · search history · message metadata · lik
 
 Data **privacy** · data **security** · data **validation** · data **accuracy** · data **sanitisation**
 
+> **Data validation** = checking records against expected rules and quality checks before they are used, such as required fields, valid formats, duplicates or impossible values. It can catch malformed data, but does not prove the value is true.
+> **Data accuracy** = how closely recorded values match the real-world facts they are intended to represent. A record can pass format validation and still be inaccurate if it was measured or entered incorrectly.
 > **Data sanitisation** = removing or masking sensitive information from a dataset before it is stored, shared or processed.
+> **Confusing pair — data validation vs model validation:** data validation checks the dataset or a submitted value; model validation checks how well a trained model generalises to separate examples. In the Enterprise Computing notes, validation also includes checking chart values against the source data; that is a data-integrity check, not model validation.
 
 ### 3.6 Effect on Web Architecture
 
@@ -709,7 +712,7 @@ The Starter 2 exercise applies the shift to networking vocabulary already covere
 | TCP | Transport-layer protocol that reliably delivers data in order by retransmitting lost data |
 | Packet switching | Sending data in packets that can arrive out of sequence |
 | Big data | Data characterised by the six V's |
-| Data mining | Automated analysis of large datasets to find patterns or trends; correlation alone does not prove cause |
+| Data mining | Automated analysis of large datasets to find meaningful patterns, relationships, clusters or anomalies; results can inform decisions, but correlation alone does not prove cause. This extended detail is supplementary, not a separate confirmed SE requirement. |
 | Metadata | Data about data |
 | Web content mining | Analysing text, images, audio and video |
 | Web structure mining | Analysing how pages link together |
