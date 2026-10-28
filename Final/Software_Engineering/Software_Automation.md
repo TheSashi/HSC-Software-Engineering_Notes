@@ -129,7 +129,7 @@ available data          testing & validation
 > **Key vocabulary**
 > **Data wrangling** = cleaning and restructuring raw data into a usable form (handling missing values, fixing formats, removing duplicates).
 > **Feature engineering** = choosing and constructing the input variables ("features") the model will learn from. Often matters more to accuracy than the choice of algorithm.
-> **Validation** = checking a model on a separate set of examples that were not used to fit its learned values. During development, these results help compare or tune models and check whether performance generalises beyond the training examples; a large drop from training performance can signal overfitting. In workflows that distinguish a final test set, keep that set for an independent final check. This is model validation, not input validation, which checks whether a submitted value has an allowed type, format or range.
+> **Validation** = checking a model on a separate set of examples that were not used to fit its learned values. During development, these results help compare or tune models and check whether performance generalises beyond the training examples; a large drop from training performance can signal overfitting. In workflows that distinguish a final test set, keep that set for an independent final check. This is model validation, not input validation, which checks whether a submitted value has an allowed type, format or range. In the Enterprise Computing comparison notes, “validation” also means checking data quality and whether visualisation values match the source. Keep these three contexts separate; that last meaning is a comparison clarification, not a separate confirmed Software Engineering requirement.
 
 ---
 
